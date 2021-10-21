@@ -9,12 +9,17 @@ import { Nav,
     Modal,
     ModalHeader,
     ModalBody,
-    ModalFooter
+    ModalFooter,
+    Container,
+    Row,
+    Col,
 } from 'reactstrap';
 import React, { useState } from 'react';
+import Formulario from './Formulario';
+import CartWidget from './CartWidget';
 
 const NavBar = (props) => {
-
+   
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggle = () => setDropdownOpen(!dropdownOpen);
@@ -29,12 +34,16 @@ const NavBar = (props) => {
     
 
     return (
-      <div>
+      <Container body outline style={{ width: "100%" }}>
+        <Row>
         <Nav pills>
+          <Col xs="auto">
           <NavItem>
             <NavLink href="#">Home</NavLink>
           </NavItem>
+          </Col>
 
+          <Col  xs="auto">
           <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle nav caret>
               Productos
@@ -47,7 +56,9 @@ const NavBar = (props) => {
               <DropdownItem>Eventos Especiales</DropdownItem>
             </DropdownMenu>
           </Dropdown>
+          </Col>
 
+          <Col xs="auto">
           <NavItem>
             <div>
               <Button color="link" onClick={toggleModal2} style={{ textDecoration: "none" }}>
@@ -76,7 +87,10 @@ const NavBar = (props) => {
               </Modal>
             </div>
           </NavItem>
+          </Col>
 
+
+          <Col xs="auto">
           <NavItem>
             <div>
               <Button color="link" onClick={toggleModal} style={{ textDecoration: "none" }}>
@@ -85,14 +99,7 @@ const NavBar = (props) => {
               <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Para comunicarte con nosotros</ModalHeader>
                 <ModalBody>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  <Formulario />
                 </ModalBody>
                 <ModalFooter>
                   <Button color="secondary">
@@ -105,9 +112,17 @@ const NavBar = (props) => {
               </Modal>
             </div>
           </NavItem>
+          </Col>
+
+          <Col xs="auto">
+        <NavItem>
+          <CartWidget />
+        </NavItem>
+        </Col>
 
         </Nav>
-      </div>
+        </Row>
+      </Container>
     );
 };
 
