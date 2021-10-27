@@ -1,10 +1,9 @@
 import React from 'react';
-import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function CartWidget() {
     return (
-            <AiOutlineShoppingCart />
+            <ShoppingCartIcon color="action" fontSize="large" />
     )
 }
 

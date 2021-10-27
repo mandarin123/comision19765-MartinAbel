@@ -1,1 +1,51 @@
+@font-face {
+    font-family: 'Monday';
+    src: local('Monday'), url(./Fonts/Monday.otf) format('truetype');
+  }
 
+.title {
+    font-family: Monday;
+    text-align: center;
+    text-shadow: 2px 2px 5px grey;
+    font-size: 10rem;
+}
+
+.navBarMenu {
+    width: 100%;
+    font-family: "montserrat light";
+    color: rgb(91, 91, 95);
+    text-decoration: none;
+}
+
+.modals {
+    font-family: "montserrat light" 
+}
+
+.modalButton {
+    text-decoration: none;
+}
+
+.buttonsAddRemove {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+}
+
+.buttonContainer {
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+}
+
+.quantityCounter {
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 250px;
+}
