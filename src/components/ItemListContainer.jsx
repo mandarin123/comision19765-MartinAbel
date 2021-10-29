@@ -47,7 +47,7 @@ function ItemListContainer(props) {
                     </Fade>
                 </CardBody>
             </Card>
-            <ItemCount />
+            <ItemCount initial={0} stock={6} producto={'Brownie Alpino'} />
         </>
     )
 }

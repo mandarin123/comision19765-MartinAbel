@@ -8,31 +8,22 @@ import {
     Col,
 } from 'reactstrap';
 
-function ItemCount() {
+function ItemCount({stock, initial, producto}) {
 
-    const [countBrownie, setCountBrownie] = useState(0)
-
-    const [countCheesecake, setCountCheesecake] = useState(0)
-
+    const [contador, setContador] = useState(initial)
     
-    const sumaProducto = (contador, setContador, stock) => {
-        if(contador >= stock){
-            alert('stock insuficiente')
-        }else{
-            setContador(contador + 1)
-        }
-        return contador        
+    const sumaProducto = () => {
+        contador < stock ? setContador(contador + 1) : alert('stock insuficiente')
     };
     
-    const restaProducto = (contador, setContador) => {
-        if(contador === 0){
-            setContador(contador)
-        }else{
-            setContador(contador -1)
-        }
-        return contador
-    }
+    const restaProducto = () => {
+        contador === initial ? setContador(contador) : setContador(contador - 1)
+    };
 
+    const onAdd = () => {
+        contador > initial ? alert(`Se agregaron ${contador} de ${producto}`) : alert(`Debe sumar productos para agregar al carrito`)
+    };
+    
     return (
         <div>
             <Row>
@@ -44,49 +35,22 @@ function ItemCount() {
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={() => sumaProducto(countBrownie, setCountBrownie, 6)}
-                                disabled={countBrownie === 6}
+                                onClick={sumaProducto}
+                                disabled={contador >= stock}
                             >+</Button>
 
-                            <div className="quantityCounter text-primary"><h3>{countBrownie}</h3></div>
+                            <div className="quantityCounter text-primary"><h3>{contador}</h3></div>
                             
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={() => restaProducto(countBrownie, setCountBrownie)}
-                                disabled={countBrownie === 0}
+                                onClick={restaProducto}
+                                disabled={contador === initial}
                             >-</Button>
                             <Button 
                                 color="primary"
-                                onClick={() => alert(`Se agregaron ${countBrownie} de Brownies alpinos`)}
-                            >Agregar al carrito</Button>
-                        </div>
-                    </Card>
-                </Col>
-                <Col sm="6">
-                    <Card body>
-                    <CardTitle tag="h5">Cheesecake</CardTitle>
-                    <CardText className="modals">Un pastel de queso o tarta de queso es un postre muy popular desde el siglo XX hecho a base de ricota, requesón, queso quark, azúcar y algunas veces otros ingredientes, tales como: huevos, crema de leche, patata, almendras o frutas.</CardText>
-                    <div className="buttonContainer">
-                            <Button 
-                                color="primary" 
-                                className="buttonsAddRemove"
-                                onClick={() => sumaProducto(countCheesecake, setCountCheesecake, 3)}
-                                disabled={countCheesecake === 3}
-                            >+</Button>
-
-                            <div className="quantityCounter text-primary"><h3>{countCheesecake}</h3></div>
-                            
-                            <Button 
-                                color="primary" 
-                                className="buttonsAddRemove"
-                                onClick={() => restaProducto(countCheesecake, setCountCheesecake)}
-                                disabled={countCheesecake === 0}
-                            >-</Button>
-                            <Button 
-                                color="primary"
-                                onClick={() => alert(`Se agregaron ${countCheesecake} de Cheesecake`)}
-                            >Agregar al carrito</Button>
+                                onClick={onAdd}
+                            >Agregar producto</Button>
                         </div>
                     </Card>
                 </Col>
