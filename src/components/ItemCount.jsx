@@ -10,18 +10,20 @@ import {
 
 function ItemCount({stock, initial, producto}) {
 
-    const [contador, setContador] = useState(initial)
+    const [counter, setcounter] = useState(initial);
+
+    const brownieDescription = `Es un bizcocho de chocolate pequeño, típico de la gastronomía de Estados Unidos. Se llama así por su color marrón oscuro, o brown en inglés. A veces se cubre con jarabe espeso de chocolate y puede llevar dentro trocitos de nueces, chocolate, butterscotch, mantequilla de maní.`
     
-    const sumaProducto = () => {
-        contador < stock ? setContador(contador + 1) : alert('stock insuficiente')
+    const addProducts = () => {
+        counter <= stock ? setcounter(counter + 1) : alert('stock insuficiente'); 
     };
     
-    const restaProducto = () => {
-        contador === initial ? setContador(contador) : setContador(contador - 1)
+    const subtractProduct = () => {
+        counter === initial ? setcounter(counter) : setcounter(counter - 1)
     };
 
     const onAdd = () => {
-        contador > initial ? alert(`Se agregaron ${contador} de ${producto}`) : alert(`Debe sumar productos para agregar al carrito`)
+        counter > initial ? alert(`Se agregaron ${counter} de ${producto}`) : alert(`No se puede agregar ${counter} de ${producto} al carrito`)
     };
     
     return (
@@ -29,23 +31,25 @@ function ItemCount({stock, initial, producto}) {
             <Row>
                 <Col sm="6">
                     <Card body>
-                    <CardTitle tag="h5">Brownie alpino</CardTitle>
-                    <CardText className="modals">Es un bizcocho de chocolate pequeño, típico de la gastronomía de Estados Unidos. Se llama así por su color marrón oscuro, o brown en inglés. A veces se cubre con jarabe espeso de chocolate y puede llevar dentro trocitos de nueces, chocolate, butterscotch, mantequilla de maní.</CardText>
+                    <CardTitle tag="h3">Brownie alpino</CardTitle>
+                    <CardText className="modals">{brownieDescription}</CardText>
+                    <div className="modals">El stock es de: {stock}</div>
                         <div className="buttonContainer">
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={sumaProducto}
-                                disabled={contador >= stock}
+                                onClick={addProducts}
+                                disabled={counter >= stock}
                             >+</Button>
 
-                            <div className="quantityCounter text-primary"><h3>{contador}</h3></div>
+                            <div className="quantityCounter text-primary"><h3>{counter}</h3></div>
+                            
                             
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={restaProducto}
-                                disabled={contador === initial}
+                                onClick={subtractProduct}
+                                disabled={counter === initial}
                             >-</Button>
                             <Button 
                                 color="primary"
