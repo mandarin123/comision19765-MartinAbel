@@ -6,9 +6,7 @@ import {
     Button,
     Row,
     Col,
-    Alert,
-    Badge,
-  } from 'reactstrap';
+} from 'reactstrap';
 
 function ItemCount() {
 
@@ -16,6 +14,24 @@ function ItemCount() {
 
     const [countCheesecake, setCountCheesecake] = useState(0)
 
+    
+    const sumaProducto = (contador, setContador, stock) => {
+        if(contador >= stock){
+            alert('stock insuficiente')
+        }else{
+            setContador(contador + 1)
+        }
+        return contador        
+    };
+    
+    const restaProducto = (contador, setContador) => {
+        if(contador === 0){
+            setContador(contador)
+        }else{
+            setContador(contador -1)
+        }
+        return contador
+    }
 
     return (
         <div>
@@ -28,7 +44,8 @@ function ItemCount() {
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={countBrownie === 6 ? alert('Stock insuficiente') : () => setCountBrownie(countBrownie +1)}
+                                onClick={() => sumaProducto(countBrownie, setCountBrownie, 6)}
+                                disabled={countBrownie === 6}
                             >+</Button>
 
                             <div className="quantityCounter text-primary"><h3>{countBrownie}</h3></div>
@@ -36,7 +53,8 @@ function ItemCount() {
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={countBrownie === 0 ? () => setCountBrownie(countBrownie) :() => setCountBrownie(countBrownie - 1)}
+                                onClick={() => restaProducto(countBrownie, setCountBrownie)}
+                                disabled={countBrownie === 0}
                             >-</Button>
                             <Button 
                                 color="primary"
@@ -53,7 +71,8 @@ function ItemCount() {
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={countCheesecake === 3 ? alert('Stock insuficiente') : () => setCountCheesecake(countCheesecake +1)}
+                                onClick={() => sumaProducto(countCheesecake, setCountCheesecake, 3)}
+                                disabled={countCheesecake === 3}
                             >+</Button>
 
                             <div className="quantityCounter text-primary"><h3>{countCheesecake}</h3></div>
@@ -61,7 +80,8 @@ function ItemCount() {
                             <Button 
                                 color="primary" 
                                 className="buttonsAddRemove"
-                                onClick={countCheesecake === 0 ? () => setCountCheesecake(countCheesecake) :() => setCountCheesecake(countCheesecake - 1)}
+                                onClick={() => restaProducto(countCheesecake, setCountCheesecake)}
+                                disabled={countCheesecake === 0}
                             >-</Button>
                             <Button 
                                 color="primary"
