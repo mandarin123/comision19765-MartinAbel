@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ButtonToggle, Card, CardBody, CardTitle, Fade, ListGroup, ListGroupItem } from 'reactstrap';
 import '../App.css';
-import ItemCount from './ItemCount';
+import CardContainer from './CardContainer';
 
 const lista = ['Tortas', 'Desayunos', 'Eventos Especiales', 'Pasteleria'];
 
@@ -24,9 +24,7 @@ const itemListaStyle = {
 };
 
 
-function ItemListContainer(props) {
-
-    
+function ItemListContainer(props) {    
     
     const listItem = lista.map((item) => <ListGroupItem style={ itemListaStyle }>{item}</ListGroupItem>);
 
@@ -47,7 +45,8 @@ function ItemListContainer(props) {
                     </Fade>
                 </CardBody>
             </Card>
-            <ItemCount initial={0} stock={6} producto={'Brownie Alpino'} />
+            <CardContainer stock={6} product={'Brownie Alpino'}>
+            </CardContainer>
         </>
     )
 }
