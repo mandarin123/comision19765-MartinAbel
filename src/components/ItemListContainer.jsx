@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { ButtonToggle, Card, CardBody, CardTitle, Fade, ListGroup, ListGroupItem } from 'reactstrap';
+import React, { useEffect, useState } from 'react';
+import { ButtonToggle, Card, CardBody, CardTitle, Fade, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import '../App.css';
 import CardContainer from './CardContainer';
+import ItemList from './ItemList';
+import { products } from './Products';
+ 
 
 const lista = ['Tortas', 'Desayunos', 'Eventos Especiales', 'Pasteleria'];
 
@@ -24,13 +27,34 @@ const itemListaStyle = {
 };
 
 
+const getProducts = new Promise((res, rej) => {
+    setTimeout(() => {
+        res(products)
+    }, 2000);
+});
+
+const spinnerStyle = {
+    textAlign: "center",
+}
+
 function ItemListContainer(props) {    
     
-    const listItem = lista.map((item) => <ListGroupItem style={ itemListaStyle }>{item}</ListGroupItem>);
+    const listItem = lista.map((item) => <ListGroupItem style={ itemListaStyle } key=''>{item}</ListGroupItem>);
 
     const [fadeIn, setFadeIn] = useState(false);
 
     const toggle = () => setFadeIn(!fadeIn);
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getProducts
+            .then(res => {
+                setProducts(res)
+            })
+            .finally(() => setLoading(false))
+    },[]);
 
     return (
         <>
@@ -45,8 +69,15 @@ function ItemListContainer(props) {
                     </Fade>
                 </CardBody>
             </Card>
-            <CardContainer stock={6} product={'Brownie Alpino'}>
-            </CardContainer>
+            <CardContainer stock={6} product={'Brownie Alpino'} />
+            {
+                loading 
+                ? 
+                    <div style={spinnerStyle}><Spinner color="primary" size="">.</Spinner></div>
+                : 
+                    <ItemList products={products}/>
+            }
+            
         </>
     )
 }

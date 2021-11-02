@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-function Formulario(props) {
+function Formulario() {
     
   return (
 
