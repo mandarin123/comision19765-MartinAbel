@@ -5,7 +5,7 @@ import {
     CardTitle,
     CardSubtitle,
     CardText,
-    Button
+    Button,
 } from 'reactstrap';
 import React from 'react';
 
@@ -13,7 +13,8 @@ import React from 'react';
 const Item = ({prod}) => {
 
     return (
-        <Card key={prod.id}>
+
+        <Card key={prod.id} className="text-center" body outline>
             <CardImg
                 alt={prod.imgDesc}
                 src={prod.imgUrl}
@@ -31,6 +32,7 @@ const Item = ({prod}) => {
                 <Button>Mostrar detalle</Button>
             </CardBody>
         </Card>
+
     );
 }
 

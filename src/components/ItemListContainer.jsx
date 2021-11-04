@@ -39,7 +39,7 @@ const spinnerStyle = {
 
 function ItemListContainer(props) {    
     
-    const listItem = lista.map((item) => <ListGroupItem style={ itemListaStyle } key=''>{item}</ListGroupItem>);
+    const listItem = lista.map((item) => <ListGroupItem style={ itemListaStyle }>{item}</ListGroupItem>);
 
     const [fadeIn, setFadeIn] = useState(false);
 

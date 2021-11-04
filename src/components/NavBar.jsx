@@ -20,7 +20,7 @@ import Formulario from "./Formulario";
 import CartWidget from "./CartWidget";
 import "../App.css";
 
-const NavBar = (props) => {
+const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);

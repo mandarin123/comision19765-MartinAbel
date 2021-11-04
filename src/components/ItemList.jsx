@@ -4,7 +4,7 @@ import Item from './Item';
 const ItemList = ({products}) => {
     return (
         <>
-            { products.map(prod => <Item prod={prod} />) }  
+            { products.map(prod => <Item prod={prod} key={prod.id} />) }  
         </>
     )
 }
