@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
 
 
     return (
-        <div>
+        <div className="modals">
         {
             loading 
             ? 

@@ -22,7 +22,7 @@ const Item = ({prod}) => {
                 width="100%"
             />
             <CardBody>
-                <CardTitle tag="h5">{prod.title}</CardTitle>
+                <CardTitle tag="h5"><h3>{prod.title}</h3></CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                     {prod.price}
                 </CardSubtitle>

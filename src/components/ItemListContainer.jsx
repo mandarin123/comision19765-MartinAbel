@@ -58,9 +58,9 @@ function ItemListContainer(props) {
 
     return (
         <>
-            <Card>
+            <Card className="modals">
                 <CardBody>
-                    <CardTitle className="title">{props.title}</CardTitle>
+                    <CardTitle className="title"><h2>{props.title}</h2></CardTitle>
                     <ButtonToggle color="primary" onClick={toggle} style={ buttonStyle }>Mostrar lista de productos</ButtonToggle>
                     <Fade in={fadeIn} tag="h5" className="mt-3">
                         <ListGroup style={ listaStyle }>

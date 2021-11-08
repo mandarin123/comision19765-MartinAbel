@@ -29,7 +29,7 @@ const ItemDetail = ({item}) => {
           height="50%"
         />
         <CardBody>
-          <CardTitle tag="h5">{item.name}</CardTitle>
+          <CardTitle tag="h5"><h2>{item.name}</h2></CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
             {item.subtitle}
           </CardSubtitle>
