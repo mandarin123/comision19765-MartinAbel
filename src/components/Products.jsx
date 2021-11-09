@@ -1,5 +1,5 @@
 export const products = [
-    {id: 1, categoria: "torta", title:"Letter / Number cakes", desciption:"Torta de chocolate y dulce de leche", price:"Precio a cotizar", imgDesc: "", imgUrl:""},
+    {id: 1, categoria: "torta", title:"Letter / Number cakes", desciption:"Torta de chocolate y dulce de leche", price:"Precio a cotizar", imgDesc: "", imgUrl:"https://i0.wp.com/irecetasfaciles.com/wp-content/uploads/2019/08/pizza-de-jamon-queso-y-tocino.jpg?fit=900%2C574&ssl=1"},
     {id: 2, categoria: "torta", title:"Tortas clásicas rellenas", desciption:"Torta de chocolate y dulce de leche", price:"Precio a cotizar", imgDesc: "", imgUrl:""},
     {id: 3, categoria: "torta", title:"Tortas a pedido", desciption:"Torta de chocolate y dulce de leche", price:"Precio a cotizar", imgDesc: "", imgUrl:""},
     

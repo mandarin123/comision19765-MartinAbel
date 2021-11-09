@@ -39,7 +39,7 @@ const ItemDetail = ({prod}) => {
             <br/>
             {prod.price}
           </CardText>
-          <Link to={`/categoria/${prod.id}`}>
+          <Link to={`/detail/${prod.id}`}>
             <Button>Mostrar mas</Button>
           </Link>
         </CardBody>
