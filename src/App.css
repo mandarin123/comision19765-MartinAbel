@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Monday';
     src: local('Monday'), url(./Fonts/Monday.otf) format('truetype');
-  }
+}
 
 .title {
     font-family: 'Monday';
@@ -14,6 +14,14 @@
     width: 100%;
     font-family: "montserrat light";
     color: rgb(91, 91, 95);
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+}
+
+.navBarLinks {
+    color: blue;
+    text-align: center;
     text-decoration: none;
 }
 

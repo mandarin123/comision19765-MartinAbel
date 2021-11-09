@@ -5,7 +5,6 @@ import {
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  NavLink,
   Button,
   Modal,
   ModalHeader,
@@ -16,7 +15,7 @@ import {
   Col,
 } from "reactstrap";
 import React, { useState } from "react";
-import Formulario from "./Formulario";
+import { Link } from "react-router-dom";import Formulario from "./Formulario";
 import CartWidget from "./CartWidget";
 import "../App.css";
 
@@ -34,26 +33,48 @@ const NavBar = () => {
   const toggleModal2 = () => setModal2(!modal2);
 
   return (
-    <Container body outline className="navBarMenu">
-      <Row>
+    <Container body outline >
+      <Row className="navBarMenu">
         <Nav pills>
+          
           <Col xs="auto">
-            <NavItem>
-              <NavLink href="#">Home</NavLink>
-            </NavItem>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <NavItem className="navBarLinks">Home</NavItem>
+            </Link>
           </Col>
 
           <Col xs="auto">
             <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret className="navBarLinks">
                 Productos
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Tortas</DropdownItem>
-                <DropdownItem>Postres</DropdownItem>
-                <DropdownItem>Pasteleria</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Eventos Especiales</DropdownItem>
+
+                <Link to="/categoria/torta" style={{ textDecoration: "none" }}>
+                  <DropdownItem className="navBarLinks">Tortas</DropdownItem>
+                </Link>
+
+                <Link to="" style={{ textDecoration: "none" }}>
+                  <DropdownItem className="navBarLinks">Desayunos</DropdownItem>
+                </Link>
+
+                <Link to="" style={{ textDecoration: "none" }}>
+                <DropdownItem className="navBarLinks">Tartas</DropdownItem>
+                </Link>
+
+                <Link to="" style={{ textDecoration: "none" }}>
+                <DropdownItem className="navBarLinks">Pasteleia</DropdownItem>
+                </Link>
+
+                <Link to="" style={{ textDecoration: "none" }}>
+                <DropdownItem className="navBarLinks">Eventos Especiales</DropdownItem>
+                </Link>
+
+                <DropdownItem divider className="navBarLinks" />
+                
+                <Link to="/productos" style={{ textDecoration: "none" }}>
+                <DropdownItem className="navBarLinks">Todos los productos</DropdownItem>
+                </Link>
               </DropdownMenu>
             </Dropdown>
           </Col>
@@ -64,6 +85,7 @@ const NavBar = () => {
                 <Button
                   color="link"
                   onClick={toggleModal2}
+                  className="navBarLinks"
                   style={{ textDecoration: "none" }}
                 >
                   Sobre Nostros
@@ -95,6 +117,7 @@ const NavBar = () => {
                 <Button
                   color="link"
                   onClick={toggleModal}
+                  className="navBarLinks"
                   style={{ textDecoration: "none" }}
                 >
                   Contacto
@@ -115,11 +138,14 @@ const NavBar = () => {
             </NavItem>
           </Col>
 
-          <Col>
+          <Col style={{ float: "right" }}>
             <NavItem>
-              <CartWidget />
+              <Link to="/cart">
+                <CartWidget />
+              </Link>
             </NavItem>
           </Col>
+
         </Nav>
       </Row>
     </Container>

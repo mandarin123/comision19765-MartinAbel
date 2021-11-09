@@ -4,6 +4,7 @@ import '../App.css';
 import CardContainer from './CardContainer';
 import ItemList from './ItemList';
 import { products } from './Products';
+import { useParams } from 'react-router';
  
 
 const lista = ['Tortas', 'Desayunos', 'Eventos Especiales', 'Pasteleria'];
@@ -48,19 +49,34 @@ function ItemListContainer(props) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const { categoryID } = useParams();
+
+
     useEffect(() => {
-        getProducts
+        if (categoryID) {
+            getProducts
+            .then(res => {
+                setProducts(res.filter(prod => prod.categoria === categoryID))
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
+        } else {
+            getProducts
             .then(res => {
                 setProducts(res)
             })
-            .finally(() => setLoading(false))
-    },[]);
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false)) 
+        };
+    },[categoryID]);
+
+    console.log(categoryID);
 
     return (
         <>
             <Card className="modals">
                 <CardBody>
-                    <CardTitle className="title"><h2>{props.title}</h2></CardTitle>
+                    <CardTitle><h2 className="title">{props.title}</h2></CardTitle>
                     <ButtonToggle color="primary" onClick={toggle} style={ buttonStyle }>Mostrar lista de productos</ButtonToggle>
                     <Fade in={fadeIn} tag="h5" className="mt-3">
                         <ListGroup style={ listaStyle }>

@@ -8,6 +8,7 @@ import {
     Button,
 } from 'reactstrap';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Item = ({prod}) => {
@@ -29,7 +30,9 @@ const Item = ({prod}) => {
                 <CardText>
                     {prod.desciption}
                 </CardText>
-                <Button>Mostrar detalle</Button>
+                <Link to={`/categoria/${prod.categoria}`}>
+                    <Button>Mostrar detalle</Button>
+                </Link>
             </CardBody>
         </Card>
 
