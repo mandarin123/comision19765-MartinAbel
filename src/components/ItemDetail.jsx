@@ -19,27 +19,27 @@ export const cardItem = {
 }
 
 
-const ItemDetail = ({item}) => {
+const ItemDetail = ({prod}) => {
     return (
       <Card>
         <CardImg
           alt=""
-          src={item.pictureSrc}
+          src={prod.pictureSrc}
           top 
           width="25px"
           height="50%"
         />
         <CardBody>
-          <CardTitle tag="h5"><h2>{item.name}</h2></CardTitle>
+          <CardTitle tag="h5"><h2>{prod.name}</h2></CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            {item.subtitle}
+            {prod.subtitle}
           </CardSubtitle>
           <CardText>
-            {item.detail}
+            {prod.detail}
             <br/>
-            {item.price}
+            {prod.price}
           </CardText>
-          <Link to={`/categoria/${item.id}`}>
+          <Link to={`/categoria/${prod.id}`}>
             <Button>Mostrar mas</Button>
           </Link>
         </CardBody>
