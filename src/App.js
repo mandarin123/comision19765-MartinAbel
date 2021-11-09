@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartWidget from './components/CartWidget';
 import Logo from './components/Logo';
 import ItemDetailContainer from './components/ItemDetailContainer';
+import Item from './components/Item';
 
 
 
@@ -22,7 +23,7 @@ function App(title) {
           <Route exact path="/" element={<Logo />}/>
           <Route exact path="/categoria/:categoryID" element={<ItemListContainer />}/>
           <Route exact path="/productos/" element={<ItemListContainer />}/>
-          <Route exact path="/detail/:id" element={<ItemDetailContainer />}/>
+          <Route exact path="/detail/:id" element={<Item />}/>
           <Route exact path="/cart" element={<CartWidget />}/>
 
           
