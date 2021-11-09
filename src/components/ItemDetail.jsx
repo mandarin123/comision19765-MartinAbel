@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
     Card,
     CardImg,
@@ -38,7 +39,9 @@ const ItemDetail = ({item}) => {
             <br/>
             {item.price}
           </CardText>
-          <Button>Mostrar mas</Button>
+          <Link to={`/categoria/${item.id}`}>
+            <Button>Mostrar mas</Button>
+          </Link>
         </CardBody>
       </Card>
     );
