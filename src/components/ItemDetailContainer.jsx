@@ -22,7 +22,7 @@ const ItemDetailContainer = () => {
         if(prodID){
             getItem
                 .then(res => {
-                    setItems(res.find(prod => prod.id === prodID))
+                    setItems(res.find(items => items.id === prodID))
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
