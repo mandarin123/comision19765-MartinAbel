@@ -6,7 +6,7 @@ import { products } from './Products';
 import { useParams } from 'react-router';
  
 
-const getProducts = new Promise((res, rej) => {
+const getProducts = new Promise((res) => {
     setTimeout(() => {
         res(products)
     }, 2000);
@@ -16,7 +16,7 @@ const spinnerStyle = {
     textAlign: "center",
 }
 
-function ItemListContainer(props) {    
+function ItemListContainer() {    
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -41,7 +41,6 @@ function ItemListContainer(props) {
         };
     },[categoryID]);
 
-    console.log(products)
 
     return (
         <>

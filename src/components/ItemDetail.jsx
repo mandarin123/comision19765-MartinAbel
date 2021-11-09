@@ -7,7 +7,9 @@ import {
     CardTitle,
 } from 'reactstrap';
 
-const ItemDetail = (prod) => {
+
+
+const ItemDetail = ({prod}) => {
     return (
       <Card>
         <CardImg

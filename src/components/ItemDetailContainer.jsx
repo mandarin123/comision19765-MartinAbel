@@ -11,12 +11,9 @@ const getItem = new Promise((res) => {
     }, 2000);
 });
 
-
-
 const ItemDetailContainer = () => {
 
-    const [item, setItem] = useState([]);
-
+    const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const { prodID } = useParams(); 
@@ -25,21 +22,20 @@ const ItemDetailContainer = () => {
         if(prodID){
             getItem
                 .then(res => {
-                    setItem(res.find(prod => prod.id === prodID))
+                    setItems(res.find(prod => prod.id === prodID))
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
         }else{
             getItem
                 .then(res => {
-                    setItem(res)
+                    setItems(res)
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false)) 
         }
     },[prodID]);
 
-    console.log(item)
 
     return (
         <div className="modals">
