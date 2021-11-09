@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ButtonToggle, Card, CardBody, CardTitle, Fade, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
+import { ButtonToggle, Card, CardBody, Fade, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import '../App.css';
 import CardContainer from './CardContainer';
 import ItemList from './ItemList';
@@ -74,9 +74,22 @@ function ItemListContainer(props) {
 
     return (
         <>
-            <Card className="modals">
+            {
+                loading 
+                ? 
+                <div style={spinnerStyle}><Spinner color="primary" size="">.</Spinner></div>
+                : 
+                <ItemList products={products}/>
+            }
+            
+        </>
+    )
+}
+
+export default ItemListContainer
+
+            {/* <Card className="modals">
                 <CardBody>
-                    <CardTitle><h2 className="title">{props.title}</h2></CardTitle>
                     <ButtonToggle color="primary" onClick={toggle} style={ buttonStyle }>Mostrar lista de productos</ButtonToggle>
                     <Fade in={fadeIn} tag="h5" className="mt-3">
                         <ListGroup style={ listaStyle }>
@@ -85,17 +98,4 @@ function ItemListContainer(props) {
                     </Fade>
                 </CardBody>
             </Card>
-            <CardContainer stock={6} product={'Brownie Alpino'} />
-            {
-                loading 
-                ? 
-                    <div style={spinnerStyle}><Spinner color="primary" size="">.</Spinner></div>
-                : 
-                    <ItemList products={products}/>
-            }
-            
-        </>
-    )
-}
-
-export default ItemListContainer
+            <CardContainer stock={6} product={'Brownie Alpino'} /> */}

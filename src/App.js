@@ -2,9 +2,11 @@ import './App.css';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CartWidget from './components/CartWidget';
+import Logo from './components/Logo';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 
 
@@ -14,11 +16,14 @@ function App(title) {
   return (
     <BrowserRouter>
       <NavBar />
-
+      <Logo title={"Las Alba"} />
       <Routes>
 
-          <Route exact path="/" element={<ItemListContainer title="Las Alba" />} />
-          <Route exact path="/itemDetailContainer" element={<ItemDetailContainer />}/>
+          <Route exact path="/" element={<Logo />}/>
+          <Route exact path="/categoria/:categoryID" element={<ItemListContainer />}/>
+          <Route exact path="/productos/" element={<ItemListContainer />}/>
+          <Route exact path="/detail/:id" element={<ItemDetailContainer />}/>
+          <Route exact path="/cart" element={<CartWidget />}/>
 
           
 

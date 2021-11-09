@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";import Formulario from "./Formulario";
 import CartWidget from "./CartWidget";
 import "../App.css";
+import ItemListContainer from "./ItemListContainer";
 
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -50,29 +51,29 @@ const NavBar = () => {
               </DropdownToggle>
               <DropdownMenu>
 
-                <Link to="/categoria/torta" style={{ textDecoration: "none" }}>
+                <Link to="/categoria/torta" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                   <DropdownItem className="navBarLinks">Tortas</DropdownItem>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to="/categoria/desayuno" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                   <DropdownItem className="navBarLinks">Desayunos</DropdownItem>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to="/categoria/tartas" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                 <DropdownItem className="navBarLinks">Tartas</DropdownItem>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to="/categoria/pasteleria" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                 <DropdownItem className="navBarLinks">Pasteleia</DropdownItem>
                 </Link>
 
-                <Link to="" style={{ textDecoration: "none" }}>
+                <Link to="/categoria/eventosEsp" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                 <DropdownItem className="navBarLinks">Eventos Especiales</DropdownItem>
                 </Link>
 
                 <DropdownItem divider className="navBarLinks" />
                 
-                <Link to="/productos" style={{ textDecoration: "none" }}>
+                <Link to="/productos" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
                 <DropdownItem className="navBarLinks">Todos los productos</DropdownItem>
                 </Link>
               </DropdownMenu>
