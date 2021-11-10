@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 
-function ItemCount({stock, initial, product}) {
+function ItemCount({stock, initial = 0, product}) {
 
     const [counter, setcounter] = useState(initial);
     

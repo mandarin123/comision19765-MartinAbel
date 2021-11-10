@@ -4,38 +4,32 @@ import {
     CardBody,
     CardTitle,
     CardSubtitle,
-    CardText,
     Button,
 } from 'reactstrap';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../App.css";
 
 
 const Item = ({prod}) => {
 
     return (
-
-        <Card key={prod.id} className="text-center" body outline>
+        <Card key={prod.id} style={{ width:"18rem" }} body outline>
             <CardImg
                 alt={prod.imgDesc}
                 src={prod.imgUrl}
                 top
-                width="100%"
             />
             <CardBody>
                 <CardTitle tag="h5"><h3>{prod.title}</h3></CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                     {prod.price}
                 </CardSubtitle>
-                <CardText>
-                    {prod.desciption}
-                </CardText>
                 <Link to={`/detail/${prod.id}`}>
                     <Button>Mostrar detalle</Button>
                 </Link>
             </CardBody>
         </Card>
-
     );
 }
 

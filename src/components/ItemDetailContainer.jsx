@@ -13,28 +13,31 @@ const getItem = new Promise((res) => {
 
 const ItemDetailContainer = () => {
 
-    const [items, setItems] = useState([]);
+    const [item, setItem] = useState();
+
     const [loading, setLoading] = useState(true);
 
     const { prodID } = useParams(); 
 
+    
     useEffect(() => {
         if(prodID){
             getItem
                 .then(res => {
-                    setItems(res.find(items => items.id === prodID))
+                    setItem(res.find(x => x.id === parseInt(prodID)))
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
         }else{
             getItem
                 .then(res => {
-                    setItems(res)
+                    setItem(res)
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false)) 
         }
     },[prodID]);
+
 
 
     return (
@@ -44,7 +47,7 @@ const ItemDetailContainer = () => {
             ? 
                 <div style={ { textAlign: "center" } }><Spinner color="primary" size="">.</Spinner></div>
             : 
-                <ItemDetail prod={products}/>
+                <ItemDetail prod={item}/>
         }
         </div>
     )

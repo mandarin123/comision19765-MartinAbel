@@ -41,6 +41,7 @@
     display: inline-block;
     line-height: 50px;
     text-align: center;
+    margin-right: 10px;
 }
 
 .buttonContainer {
@@ -57,4 +58,9 @@
     justify-content: center;
     display: flex;
     width: 250px;
+}
+
+.itemDetailCard {
+    align-items: center;
+    text-align: center;
 }

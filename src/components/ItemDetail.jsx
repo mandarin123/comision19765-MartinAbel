@@ -5,27 +5,30 @@ import {
     CardBody,
     CardText,
     CardTitle,
-} from 'reactstrap';
+} from 'reactstrap'; 
+import "../App.css"
+import ItemCount from './ItemCount';
 
 
 
 const ItemDetail = ({prod}) => {
     return (
-      <Card>
+      <Card className="itemDetailCard">
         <CardImg
           alt={prod.imgDesc}
           src={prod.imgUrl}
           top 
-          width="25px"
-          height="50%"
         />
         <CardBody>
-          <CardTitle tag="h5"><h2>{prod.title}</h2></CardTitle>
+          <CardTitle tag="h2">{prod.title}</CardTitle>
           <CardText>
             {prod.desciption}
             <br/>
             {prod.price}
           </CardText>
+        </CardBody>
+        <CardBody>
+          <ItemCount stock={prod.stock} product={prod.title} />
         </CardBody>
       </Card>
     );

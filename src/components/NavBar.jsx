@@ -15,7 +15,8 @@ import {
   Col,
 } from "reactstrap";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";import Formulario from "./Formulario";
+import { Link } from "react-router-dom";
+import Formulario from "./Formulario";
 import CartWidget from "./CartWidget";
 import "../App.css";
 import ItemListContainer from "./ItemListContainer";
@@ -34,14 +35,24 @@ const NavBar = () => {
   const toggleModal2 = () => setModal2(!modal2);
 
   return (
-    <Container body outline >
+    <Container body outline>
       <Row className="navBarMenu">
         <Nav pills>
-          
           <Col xs="auto">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <div>
+              <Link to="/">
+                <Button
+                  color="link"
+                  className="navBarLinks"
+                  style={{ textDecoration: "none" }}
+                >
+                  Home
+                </Button>
+              </Link>
+            </div>
+            {/* 
               <NavItem className="navBarLinks">Home</NavItem>
-            </Link>
+            */}
           </Col>
 
           <Col xs="auto">
@@ -50,31 +61,58 @@ const NavBar = () => {
                 Productos
               </DropdownToggle>
               <DropdownMenu>
-
-                <Link to="/categoria/torta" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
+                <Link
+                  to="/categoria/torta"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
                   <DropdownItem className="navBarLinks">Tortas</DropdownItem>
                 </Link>
 
-                <Link to="/categoria/desayuno" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
+                <Link
+                  to="/categoria/desayuno"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
                   <DropdownItem className="navBarLinks">Desayunos</DropdownItem>
                 </Link>
 
-                <Link to="/categoria/tartas" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
-                <DropdownItem className="navBarLinks">Tartas</DropdownItem>
+                <Link
+                  to="/categoria/tartas"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DropdownItem className="navBarLinks">Tartas</DropdownItem>
                 </Link>
 
-                <Link to="/categoria/pasteleria" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
-                <DropdownItem className="navBarLinks">Pasteleia</DropdownItem>
+                <Link
+                  to="/categoria/pasteleria"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DropdownItem className="navBarLinks">Pasteleria</DropdownItem>
                 </Link>
 
-                <Link to="/categoria/eventosEsp" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
-                <DropdownItem className="navBarLinks">Eventos Especiales</DropdownItem>
+                <Link
+                  to="/categoria/eventosEsp"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DropdownItem className="navBarLinks">
+                    Eventos Especiales
+                  </DropdownItem>
                 </Link>
 
                 <DropdownItem divider className="navBarLinks" />
-                
-                <Link to="/productos" element={<ItemListContainer />} style={{ textDecoration: "none" }}>
-                <DropdownItem className="navBarLinks">Todos los productos</DropdownItem>
+
+                <Link
+                  to="/productos"
+                  element={<ItemListContainer />}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DropdownItem className="navBarLinks">
+                    Todos los productos
+                  </DropdownItem>
                 </Link>
               </DropdownMenu>
             </Dropdown>
@@ -139,14 +177,15 @@ const NavBar = () => {
             </NavItem>
           </Col>
 
-          <Col style={{ float: "right" }}>
-            <NavItem>
+          <Col>
+            <NavItem style={{ float: "right" }}>
               <Link to="/cart">
-                <CartWidget />
+                <Button color="link" className="navBarLinks">
+                  <CartWidget />
+                </Button>
               </Link>
             </NavItem>
           </Col>
-
         </Nav>
       </Row>
     </Container>

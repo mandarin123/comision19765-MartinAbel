@@ -7,8 +7,8 @@ const ItemList = ({products}) => {
     return (
         <Container fluid className="text-center">
             <CardGroup className="modals m-5 d-block" >
-                <Row style={{ display: "flex", flexWrap: "wrap" }}>
-                        { products.map(prod => <Item prod={prod} key={prod.id}  />) }  
+                <Row>
+                        { products.map(prod => <Item prod={prod} key={prod.id} />) }  
                 </Row>
             </CardGroup>
         </Container>
