@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
-const addedToCart = () => {
+const AddedToCart = () => {
   return (
-    <Button color="primary">
-      Ir al carrito
-    </Button>
+      <Button color="primary" >
+        <Link to="/cart" className="buttonIr">
+          Ir al carrito
+        </Link>
+      </Button>
   )
 };
 
 function ItemCount({stock, initial = 0, product}) {
 
     const [counter, setcounter] = useState(initial);
-    const [prodAdded, setProdAdded] = useState(0);
+    const [productAdded, setProductAdded] = useState('false');
     
     const addProducts = () => {
         counter < stock ? setcounter(counter + 1) : alert('Stock insuficiente'); 
@@ -23,8 +26,10 @@ function ItemCount({stock, initial = 0, product}) {
     };
 
     const onAdd = () => {
-        counter > initial ? alert(`Se agregaron ${counter} de ${product}`) : alert(`No se puede agregar ${counter} de ${product} al carrito`)
+        counter > initial ? setProductAdded('true')  : alert(`No se puede agregar ${counter} de ${product} al carrito`)
     };
+
+    console.log(productAdded)
     
     return (
       <div className="buttonContainer">
@@ -32,7 +37,7 @@ function ItemCount({stock, initial = 0, product}) {
           color="primary"
           className="buttonsAddRemove"
           onClick={addProducts}
-          disabled={counter >= stock}
+          disabled={counter >= stock || productAdded === 'true'}
         >
           +
         </Button>
@@ -45,14 +50,21 @@ function ItemCount({stock, initial = 0, product}) {
           color="primary"
           className="buttonsAddRemove"
           onClick={subtractProduct}
-          disabled={counter === initial}
+          disabled={counter === initial || productAdded === 'true'}
         >
           -
         </Button>
         {
-          <Button color="primary" onClick={onAdd}>
-            Agregar producto
-          </Button>
+          (productAdded === 'false') 
+            ?
+            <Button color="primary" onClick={onAdd}>
+              Agregar producto
+            </Button>
+            :
+            <Button className="buttonIr" color="primary">
+              <AddedToCart />
+              {alert(`Se agregaron ${counter} de ${product}`)}
+            </Button>
         }
       </div>
     );
