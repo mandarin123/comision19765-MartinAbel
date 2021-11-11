@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 
+const addedToCart = () => {
+  return (
+    <Button color="primary">
+      Ir al carrito
+    </Button>
+  )
+};
+
 function ItemCount({stock, initial = 0, product}) {
 
     const [counter, setcounter] = useState(initial);
+    const [prodAdded, setProdAdded] = useState(0);
     
     const addProducts = () => {
         counter < stock ? setcounter(counter + 1) : alert('Stock insuficiente'); 
@@ -40,9 +49,11 @@ function ItemCount({stock, initial = 0, product}) {
         >
           -
         </Button>
-        <Button color="primary" onClick={onAdd}>
-          Agregar producto
-        </Button>
+        {
+          <Button color="primary" onClick={onAdd}>
+            Agregar producto
+          </Button>
+        }
       </div>
     );
 }

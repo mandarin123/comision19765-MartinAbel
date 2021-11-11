@@ -14,7 +14,7 @@ import "../App.css";
 const Item = ({prod}) => {
 
     return (
-        <Card key={prod.id} style={{ width:"18rem" }} body outline>
+        <Card key={prod.id} style={{ width:"18rem", margin: "5px"}} body outline >
             <CardImg
                 alt={prod.imgDesc}
                 src={prod.imgUrl}

@@ -6,7 +6,7 @@ import "../App.css";
 const ItemList = ({products}) => {
     return (
         <Container fluid className="text-center">
-            <CardGroup className="modals m-5 d-block" >
+            <CardGroup className="modals m-5 d-block"  >
                 <Row>
                         { products.map(prod => <Item prod={prod} key={prod.id} />) }  
                 </Row>

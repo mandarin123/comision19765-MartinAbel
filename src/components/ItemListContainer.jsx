@@ -47,7 +47,7 @@ function ItemListContainer() {
             {
                 loading 
                 ? 
-                <div style={spinnerStyle}><Spinner color="primary" size="">.</Spinner></div>
+                <div style={spinnerStyle}><Spinner color="primary" size=""> </Spinner></div>
                 : 
                 <ItemList products={products}/>
             }
