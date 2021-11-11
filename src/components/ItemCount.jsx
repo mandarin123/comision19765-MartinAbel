@@ -28,9 +28,7 @@ function ItemCount({stock, initial = 0, product}) {
     const onAdd = () => {
         counter > initial ? setProductAdded('true')  : alert(`No se puede agregar ${counter} de ${product} al carrito`)
     };
-
-    console.log(productAdded)
-    
+        
     return (
       <div className="buttonContainer">
         <Button
