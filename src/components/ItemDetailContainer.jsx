@@ -11,15 +11,30 @@ const getItem = new Promise((res) => {
     }, 2000);
 });
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({ initial = 0, stock, product }) => {
 
     const [item, setItem] = useState();
 
     const [loading, setLoading] = useState(true);
-
+    
     const { prodID } = useParams(); 
 
+    const [productAdded, setProductAdded] = useState(false);
+
+    const [counter, setCounter] = useState(initial);
+
+    const addProducts = () => {
+        counter < stock ? setCounter(counter + 1) : alert('Stock insuficiente'); 
+    };
     
+    const subtractProduct = () => {
+        counter === initial ? setCounter(counter) : setCounter(counter - 1)
+    };
+    
+    const onAdd = () => {
+        counter > initial ? setProductAdded('true')  : alert(`No se puede agregar ${counter} de ${product} al carrito`)
+    };         
+
     useEffect(() => {
         if(prodID){
             getItem
@@ -38,8 +53,7 @@ const ItemDetailContainer = () => {
         }
     },[prodID]);
 
-
-
+    
     return (
         <div className="modals">
         {
@@ -47,7 +61,16 @@ const ItemDetailContainer = () => {
             ? 
                 <div style={ { textAlign: "center" } }><Spinner color="primary" size="">.</Spinner></div>
             : 
-                <ItemDetail prod={item}/>
+                <ItemDetail 
+                    prod={item}
+                    addProducts={addProducts}
+                    subtractProduct={subtractProduct}
+                    onAdd={onAdd}
+                    counter={counter}
+                    setCounter={setCounter}
+                    productAdded={productAdded}
+                    setProductAdded={setProductAdded}
+                />
         }
         </div>
     )

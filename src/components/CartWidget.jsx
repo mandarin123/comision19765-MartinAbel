@@ -1,15 +1,17 @@
-import React from "react";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import "../App.css";
 
 function CartWidget() {
+
+  const { cartList, deleteCartItem } = useContext(CartContext);
+
   return (
 
-      <ShoppingCartIcon color="action" style={{
-        display: "flex",
-        justifyContent: "inherit",
-        alignItems: "center",
+      <div className="shopCartTitle">
+        <h1>Carrito de compras</h1>
         
-      }}/>
+      </div>
 
   );
 }

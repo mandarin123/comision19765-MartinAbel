@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -12,23 +12,8 @@ const AddedToCart = () => {
   )
 };
 
-function ItemCount({stock, initial = 0, product}) {
+function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, product, counter, productAdded }) {
 
-    const [counter, setcounter] = useState(initial);
-    const [productAdded, setProductAdded] = useState('false');
-    
-    const addProducts = () => {
-        counter < stock ? setcounter(counter + 1) : alert('Stock insuficiente'); 
-    };
-    
-    const subtractProduct = () => {
-        counter === initial ? setcounter(counter) : setcounter(counter - 1)
-    };
-
-    const onAdd = () => {
-        counter > initial ? setProductAdded('true')  : alert(`No se puede agregar ${counter} de ${product} al carrito`)
-    };
-        
     return (
       <div className="buttonContainer">
         <Button
@@ -55,7 +40,7 @@ function ItemCount({stock, initial = 0, product}) {
         {
           (productAdded === 'false') 
             ?
-            <Button color="primary" onClick={onAdd}>
+            <Button color="primary" onClick={() => onAdd()}>
               Agregar producto
             </Button>
             :

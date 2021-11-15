@@ -69,3 +69,12 @@
     color: white;
     text-decoration: none;
 }
+
+.shopCartTitle{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: "montserrat light";
+}
+
+

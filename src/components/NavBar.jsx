@@ -20,6 +20,7 @@ import Formulario from "./Formulario";
 import CartWidget from "./CartWidget";
 import "../App.css";
 import ItemListContainer from "./ItemListContainer";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -181,7 +182,11 @@ const NavBar = () => {
             <NavItem style={{ float: "right" }}>
               <Link to="/cart">
                 <Button color="link" className="navBarLinks">
-                  <CartWidget />
+                  <ShoppingCart color="action"  style={{
+                    display: "flex",
+                    justifyContent: "inherit",
+                    alignItems: "center",
+                  }}/>
                 </Button>
               </Link>
             </NavItem>
