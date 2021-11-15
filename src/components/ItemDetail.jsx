@@ -12,7 +12,7 @@ import ItemCount from './ItemCount';
 const imageNotAvailable = "https://lh3.googleusercontent.com/lUbKz6nyIzbssdhZBhs8_9s-4w8UnkdQfRvV0jwcfWxxRBZThssSAc4lBN5D0A0EfuLQOZgAFda0wodAli_qXxfjqNw9gnfn-rGdFPUKSpD24yb5_SsvtPt0E2sfBCPFmI-P5fkn5Vc=w2400";
 
 
-const ItemDetail = ({ prod }) => {
+const ItemDetail = ({ prod, counter, addProducts, subtractProduct, onAdd, productAdded, setProductAdded, item }) => {
 
 
 
@@ -37,7 +37,11 @@ const ItemDetail = ({ prod }) => {
           <ItemCount 
             stock={prod.stock}
             product={prod.title}
-            addProducts
+            addProducts={addProducts}
+            subtractProduct={subtractProduct}
+            counter={counter}
+            onAdd={onAdd}
+            productAdded={productAdded}
           />
         </CardBody>
       </Card>

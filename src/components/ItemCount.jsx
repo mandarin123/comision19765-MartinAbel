@@ -12,7 +12,7 @@ const AddedToCart = () => {
   )
 };
 
-function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, product, counter, productAdded }) {
+function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, counter, productAdded, item }) {
 
     return (
       <div className="buttonContainer">
@@ -20,7 +20,7 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
           color="primary"
           className="buttonsAddRemove"
           onClick={addProducts}
-          disabled={counter >= stock || productAdded === 'true'}
+          disabled={counter >= stock || productAdded}
         >
           +
         </Button>
@@ -33,20 +33,19 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
           color="primary"
           className="buttonsAddRemove"
           onClick={subtractProduct}
-          disabled={counter === initial || productAdded === 'true'}
+          disabled={counter === initial || productAdded}
         >
           -
         </Button>
         {
-          (productAdded === 'false') 
+          productAdded
             ?
-            <Button color="primary" onClick={() => onAdd()}>
-              Agregar producto
-            </Button>
-            :
             <Button className="buttonIr" color="primary">
               <AddedToCart />
-              {alert(`Se agregaron ${counter} de ${product}`)}
+            </Button>
+            :
+            <Button color="primary" onClick={onAdd}>
+              Agregar producto
             </Button>
         }
       </div>

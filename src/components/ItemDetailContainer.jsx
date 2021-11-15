@@ -1,3 +1,4 @@
+import { ProductionQuantityLimitsRounded } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { Spinner } from 'reactstrap';
@@ -11,7 +12,9 @@ const getItem = new Promise((res) => {
     }, 2000);
 });
 
-const ItemDetailContainer = ({ initial = 0, stock, product }) => {
+const ItemDetailContainer = () => {
+
+    const initial = 0;
 
     const [item, setItem] = useState();
 
@@ -24,15 +27,15 @@ const ItemDetailContainer = ({ initial = 0, stock, product }) => {
     const [counter, setCounter] = useState(initial);
 
     const addProducts = () => {
-        counter < stock ? setCounter(counter + 1) : alert('Stock insuficiente'); 
+        setCounter(counter + 1); 
     };
     
     const subtractProduct = () => {
-        counter === initial ? setCounter(counter) : setCounter(counter - 1)
+        setCounter(counter - 1);
     };
     
     const onAdd = () => {
-        counter > initial ? setProductAdded('true')  : alert(`No se puede agregar ${counter} de ${product} al carrito`)
+        counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`)
     };         
 
     useEffect(() => {
@@ -70,6 +73,7 @@ const ItemDetailContainer = ({ initial = 0, stock, product }) => {
                     setCounter={setCounter}
                     productAdded={productAdded}
                     setProductAdded={setProductAdded}
+                    products={item}
                 />
         }
         </div>
