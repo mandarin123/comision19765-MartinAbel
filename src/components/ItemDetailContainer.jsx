@@ -1,7 +1,7 @@
-import { ProductionQuantityLimitsRounded } from '@mui/icons-material';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { Spinner } from 'reactstrap';
+import { CartContext } from '../context/CartContext';
 import ItemDetail  from './ItemDetail';
 import { products } from './Products';
 
@@ -26,6 +26,8 @@ const ItemDetailContainer = () => {
 
     const [counter, setCounter] = useState(initial);
 
+    const { cartList, addCartItem  } = useContext(CartContext);
+
     const addProducts = () => {
         setCounter(counter + 1); 
     };
@@ -35,8 +37,11 @@ const ItemDetailContainer = () => {
     };
     
     const onAdd = () => {
-        counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`)
-    };         
+        counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
+        addCartItem({...item, counter})
+    };
+
+    console.log(cartList)
 
     useEffect(() => {
         if(prodID){
@@ -46,13 +51,6 @@ const ItemDetailContainer = () => {
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
-        }else{
-            getItem
-                .then(res => {
-                    setItem(res)
-                })
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false)) 
         }
     },[prodID]);
 

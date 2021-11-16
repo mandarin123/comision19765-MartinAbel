@@ -14,15 +14,16 @@ const CartContextProvider = ({ children }) => {
         setCartList([])
     };
 
-    /* const deleteCartItem = () => {
+    const deleteCartItem = () => {
         setCartList([])
-    }; */
+    };
 
     return (
         <CartContext.Provider value={{
             cartList,
             addCartItem,
-            deleteCart
+            deleteCart,
+            deleteCartItem
         }}>
            {children} 
         </CartContext.Provider>

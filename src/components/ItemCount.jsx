@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { Button, ButtonGroup } from 'reactstrap';
+import "../App.css";
+
 
 const AddedToCart = () => {
   return (
@@ -15,39 +17,39 @@ const AddedToCart = () => {
 function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, counter, productAdded, item }) {
 
     return (
-      <div className="buttonContainer">
-        <Button
-          color="primary"
-          className="buttonsAddRemove"
-          onClick={addProducts}
-          disabled={counter >= stock || productAdded}
-        >
-          +
-        </Button>
-
-        <div className="quantityCounter text-primary">
-          <h3>{counter}</h3>
-        </div>
-
-        <Button
-          color="primary"
-          className="buttonsAddRemove"
-          onClick={subtractProduct}
-          disabled={counter === initial || productAdded}
-        >
-          -
-        </Button>
-        {
-          productAdded
-            ?
-            <Button className="buttonIr" color="primary">
-              <AddedToCart />
+      <div>
+        {productAdded ? (
+          <Button className="buttonIr" color="primary">
+            <AddedToCart />
+          </Button>
+        ) : (
+          <ButtonGroup>
+            <Button
+              color="primary"
+              className="buttonsAddRemove"
+              onClick={addProducts}
+              disabled={counter >= stock || productAdded}
+            >
+              +
             </Button>
-            :
+
+            <div className="quantityCounter text-primary">
+              <h4 className="counter">{counter}</h4>
+            </div>
+
+            <Button
+              color="primary"
+              className="buttonsAddRemove"
+              onClick={subtractProduct}
+              disabled={counter === initial || productAdded}
+            >
+              -
+            </Button>
             <Button color="primary" onClick={onAdd}>
               Agregar producto
             </Button>
-        }
+          </ButtonGroup>
+        )}
       </div>
     );
 }

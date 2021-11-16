@@ -41,15 +41,6 @@
     display: inline-block;
     line-height: 50px;
     text-align: center;
-    margin-right: 10px;
-}
-
-.buttonContainer {
-    text-align: center;
-    margin: 1em;
-    padding: 1em;
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .quantityCounter {
@@ -57,7 +48,11 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    width: 250px;
+    width: 10rem;
+}
+
+.counter {
+
 }
 
 .itemDetailCard {

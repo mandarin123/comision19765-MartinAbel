@@ -9,7 +9,7 @@ import Logo from './components/Logo';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartContextProvider from './context/CartContext';
 
-function App(title) {
+function App() {
   return (
     <CartContextProvider>
       <BrowserRouter>
@@ -21,9 +21,7 @@ function App(title) {
             <Route exact path="/categoria/:categoryID" element={<ItemListContainer />}/>
             <Route exact path="/productos/" element={<ItemListContainer />}/>
             <Route exact path="/detail/:prodID" element={<ItemDetailContainer />}/>
-            <Route exact path="/cart" element={<CartWidget />}/>
-
-            
+            <Route exact path="/cart" element={<CartWidget />}/>     
 
         </Routes>
       </BrowserRouter>
