@@ -5,7 +5,7 @@ export const products = [
     
     {id: 4, categoria: "desayuno", title:"¡Feliz Cumple!", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
     {id: 5, categoria: "desayuno", title:"Las Alba", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
-    {id: 6, categoria: "desayuno", title:"Clásico", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
+    {id: 6, categoria: "desayuno", title:"Desayuno clásico", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
     {id: 7, categoria: "desayuno", title:"Box Merienda", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:"https://lh3.googleusercontent.com/2t6m_IE-5aiXqn-zhdUQJ4smt0lPMQi3LBQkFF-ebTIxB0noU4w76pEKbGXawtE_kL72BnoqVtoz1oNvnOmhZN_5pEeeeRI3yAoASpRkmu_C2hJX4CaTXKxt0tI8PCshq-sxo_r67mA=w2400"},
     {id: 8, categoria: "desayuno", title:"Infantil", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
 

@@ -17,7 +17,6 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Formulario from "./Formulario";
-import CartWidget from "./CartWidget";
 import "../App.css";
 import ItemListContainer from "./ItemListContainer";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";

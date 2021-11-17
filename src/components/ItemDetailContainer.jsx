@@ -41,8 +41,6 @@ const ItemDetailContainer = () => {
         addCartItem({...item, counter})
     };
 
-    console.log(cartList)
-
     useEffect(() => {
         if(prodID){
             getItem
