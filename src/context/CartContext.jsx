@@ -14,7 +14,7 @@ const CartContextProvider = ({ children }) => {
     };
 
     const addCartItem = (item, counter) => {
-        if(isInCart(item)){
+        if(isInCart(item, counter)){
             let newCartList = cartList;
             newCartList.forEach((cartItem) => {
                 if(cartItem.id === item.id){
