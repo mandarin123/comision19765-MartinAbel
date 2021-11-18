@@ -14,12 +14,13 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Formulario from "./Formulario";
 import "../App.css";
 import ItemListContainer from "./ItemListContainer";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
+import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -33,6 +34,8 @@ const NavBar = () => {
   const [modal2, setModal2] = useState(false);
 
   const toggleModal2 = () => setModal2(!modal2);
+
+  const { cartTotal } = useContext(CartContext);
 
   return (
     <Container body outline>
@@ -185,7 +188,7 @@ const NavBar = () => {
                     display: "flex",
                     justifyContent: "inherit",
                     alignItems: "center",
-                  }}/>
+                  }}/>{cartTotal}
                 </Button>
               </Link>
             </NavItem>

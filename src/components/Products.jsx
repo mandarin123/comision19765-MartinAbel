@@ -9,8 +9,8 @@ export const products = [
     {id: 7, categoria: "desayuno", title:"Box Merienda", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:"https://lh3.googleusercontent.com/2t6m_IE-5aiXqn-zhdUQJ4smt0lPMQi3LBQkFF-ebTIxB0noU4w76pEKbGXawtE_kL72BnoqVtoz1oNvnOmhZN_5pEeeeRI3yAoASpRkmu_C2hJX4CaTXKxt0tI8PCshq-sxo_r67mA=w2400"},
     {id: 8, categoria: "desayuno", title:"Infantil", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$2,40", imgDesc: "", imgUrl:""},
 
-    {id: 9, categoria: "tartas", title:"Lemon Pie", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$1300,00", imgDesc: "", imgUrl:"https://lh3.googleusercontent.com/TlLHrDj_nXJbOxhKnWR6zNDHzdMLSqSLI4zFGTc7mL92gR9mGdjERX0OEIxONEbkOXmEt5Oz19GdJ3aIpV8-uFJGDUPpTj2pm6qnbFUQfOa64XNaKABVxoOj_wHEgX1bka6vFVTahwY=w2400"},
-    {id: 10, categoria: "tartas", title:"Tarta Cabsha", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$950,00", imgDesc: "", imgUrl:""},
+    {id: 9, categoria: "tartas", title:"Lemon Pie", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:1300, imgDesc: "", imgUrl:"https://lh3.googleusercontent.com/TlLHrDj_nXJbOxhKnWR6zNDHzdMLSqSLI4zFGTc7mL92gR9mGdjERX0OEIxONEbkOXmEt5Oz19GdJ3aIpV8-uFJGDUPpTj2pm6qnbFUQfOa64XNaKABVxoOj_wHEgX1bka6vFVTahwY=w2400"},
+    {id: 10, categoria: "tartas", title:"Tarta Cabsha", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:950, imgDesc: "", imgUrl:""},
     {id: 11, categoria: "tartas", title:"Tarta Frutillas", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$1400,00", imgDesc: "", imgUrl:""},
     {id: 12, categoria: "tartas", title:"Key Lemon Pie", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$1300,00", imgDesc: "", imgUrl:"https://lh3.googleusercontent.com/nwffR01BPE1S3N8yXWTxWCjd-qup4PBTLns8fMnlS0_v7mFYubCv6E9dwQbPp02LS4A7kfhETx63oZz9WByMXxpsotGOqVDAah-aMfZftPq0FSt6scyfYuf3FYzmYXOp5PukcUH4qpQ=w2400"},
     {id: 13, categoria: "tartas", title:"Chocotorta", stock: 3 , desciption:"Torta de chocolate y dulce de leche", price:"$1600,00", imgDesc: "", imgUrl:""},

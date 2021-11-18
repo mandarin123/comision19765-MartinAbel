@@ -72,4 +72,15 @@
     font-family: "montserrat light";
 }
 
+.cartTable{
+    margin-left: 10px;
+    text-align: center;
+    font-family: "montserrat light";
+}
+
+.cartImg{
+    width: 5rem;
+    height: 5rem;
+}
+
 

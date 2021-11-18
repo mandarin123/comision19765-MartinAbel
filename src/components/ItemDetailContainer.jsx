@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
 
     const [counter, setCounter] = useState(initial);
 
-    const { cartList, addCartItem  } = useContext(CartContext);
+    const { addCartItem, addCartTotal } = useContext(CartContext);
 
     const addProducts = () => {
         setCounter(counter + 1); 
@@ -38,7 +38,8 @@ const ItemDetailContainer = () => {
     
     const onAdd = () => {
         counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
-        addCartItem({...item, counter})
+        addCartItem(item, counter);
+        addCartTotal(counter);
     };
 
     useEffect(() => {
