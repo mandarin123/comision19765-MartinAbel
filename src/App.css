@@ -51,10 +51,6 @@
     width: 10rem;
 }
 
-.counter {
-
-}
-
 .itemDetailCard {
     align-items: center;
     text-align: center;
@@ -79,8 +75,20 @@
 }
 
 .cartImg{
-    width: 5rem;
-    height: 5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.empyShopCart{
+    margin: auto;
+    display: block;
+}
+
+.continuarCompra{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: "montserrat";
 }
 
 

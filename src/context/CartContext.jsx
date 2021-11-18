@@ -18,7 +18,7 @@ const CartContextProvider = ({ children }) => {
             let newCartList = cartList;
             newCartList.forEach((cartItem) => {
                 if(cartItem.id === item.id){
-                    cartItem.counter += counter
+                    cartItem.counter += item.counter
                 }
             });
             setCartList(newCartList);
@@ -33,7 +33,6 @@ const CartContextProvider = ({ children }) => {
 
     const deleteCartItem = (id) => {
         setCartList(cartList.filter(item => item.id !== id));
-        console.log(cartList)
     };
 
     const deleteCart = () => {

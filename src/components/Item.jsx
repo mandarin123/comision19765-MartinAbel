@@ -26,7 +26,7 @@ const Item = ({prod}) => {
             <CardBody>
                 <CardTitle tag="h5"><h3>{prod.title}</h3></CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
-                    {prod.price}
+                    $ {prod.price}
                 </CardSubtitle>
                 <Link to={`/detail/${prod.id}`}>
                     <Button>Mostrar detalle</Button>
