@@ -14,7 +14,7 @@ const AddedToCart = () => {
   )
 };
 
-function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, counter, productAdded, item }) {
+function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, counter, productAdded }) {
 
     return (
       <div>

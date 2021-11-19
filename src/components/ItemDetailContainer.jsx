@@ -38,7 +38,7 @@ const ItemDetailContainer = () => {
     
     const onAdd = () => {
         counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
-        addCartItem(item);
+        addCartItem(item, counter);
         addCartTotal(counter);
     };
 

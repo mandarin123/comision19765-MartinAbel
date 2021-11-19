@@ -23,7 +23,7 @@ const CartContextProvider = ({ children }) => {
             });
             setCartList(newCartList);
         }else{
-            setCartList( [...cartList, item] )
+            setCartList( [...cartList, item, counter] )
         }
     };
 
