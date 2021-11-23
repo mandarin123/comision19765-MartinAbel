@@ -6,15 +6,47 @@ const CartContextProvider = ({ children }) => {
 
     const [cartList, setCartList] = useState([]);
 
-    const [cartTotal, setCartTotal] = useState();
+    const [counter, setCounter] = useState(0);  
+    
+    const [cantidadAgregar, setcantidadAgregar]=useState(0);
+    const [cantTotal, setcantTotal]=useState(0);
+    const [total, setTotal]=useState(0);
 
-    const [counter, setCounter] = useState(0);    
 
-    const isInCart = (item) => {
-        return cartList.some(prod => prod.id === item.id)
+
+    const isInCart = (id) => {
+        return cartList.find(prod => prod.id === id)
     };
 
-    const addCartItem = (item, counter) => {
+    const addCartItem = (item) =>{
+        
+        console.log('additem')
+        let Item=isInCart(parseInt(item.id))
+        if (Item)
+        {   
+            let cantAgregar= parseInt(Item.cantidad) + parseInt(item.cantidad)
+            setcantidadAgregar(cantAgregar)
+            if (cantAgregar > item.stock)
+             {
+                 alert('No hay Stock para la cantidad ingresada')   
+             }  
+             else
+             {
+                Item.cantidad=cantAgregar
+                setTotal(total +(item.cantidad * item.price))
+                setcantTotal(cantTotal + item.cantidad)
+             }
+        }
+        else
+        {
+                setCartList([...cartList, item])
+                setTotal(total + (item.cantidad * item.price))
+                setcantTotal(cantTotal + item.cantidad)
+        }
+ 
+    }
+
+    /* const addCartItem = (item, counter) => {
         if(isInCart(item, counter)){
             let newCartList = cartList;
             newCartList.forEach((cartItem) => {
@@ -24,13 +56,9 @@ const CartContextProvider = ({ children }) => {
             });
             setCartList(newCartList);
         }else{
-            setCartList( [...cartList, item, counter] )
+            setCartList( [item, counter] )
         }
-    };
-
-    const addCartTotal = () => {
-        setCartTotal(counter + counter);
-    };
+    }; */
 
     const deleteCartItem = (id) => {
         setCartList(cartList.filter(item => item.id !== id));
@@ -39,17 +67,24 @@ const CartContextProvider = ({ children }) => {
     const deleteCart = () => {
         setCartList([])
     };
-    
 
+    const totalPrice = (item) => {
+        return counter * parseInt(item.price)
+    };
+
+    console.log("totalPrice",totalPrice)
+    
     return (
         <CartContext.Provider value={{
             cartList,
             addCartItem,
             deleteCart,
             deleteCartItem,
-            addCartTotal,
             counter,
-            setCounter
+            setCounter,
+            totalPrice,
+            cantTotal,
+            total
         }}>
            {children} 
         </CartContext.Provider>

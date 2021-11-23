@@ -23,36 +23,37 @@ const mostrarPedirCotizacion = () => {
 };
 
 
-const ItemDetail = ({ prod, counter, addProducts, subtractProduct, onAdd, productAdded }) => {
+const ItemDetail = ({ item, addProducts, subtractProduct, onAdd, productAdded }) => {
+
+
 
     return (
       <Card className="itemDetailCard">
         <CardImg
-          alt={prod.imgDesc}
+          alt={item.imgDesc}
           src={
-            (prod.imgUrl === "") ? imageNotAvailable : prod.imgUrl
+            (item.imgUrl === "") ? imageNotAvailable : item.imgUrl
           }
           top 
         />
         <CardBody>
-          <CardTitle tag="h2">{prod.title}</CardTitle>
+          <CardTitle tag="h2">{item.title}</CardTitle>
           <CardText>
-            {prod.desciption}
+            {item.desciption}
             <br/>
-            $ {prod.price}
+            $ {item.price}
           </CardText>
         </CardBody>
         <CardBody>
-          {(prod.price === "Precio a cotizar")
+          {(item.price === "Precio a cotizar")
             ?
             <Button color="primary" onClick={() => mostrarPedirCotizacion()}>Pedi tu cotizacion</Button>
             :
             <ItemCount 
-              stock={prod.stock}
-              product={prod.title}
+              stock={item.stock}
+              product={item.title}
               addProducts={addProducts}
               subtractProduct={subtractProduct}
-              counter={counter}
               onAdd={onAdd}
               productAdded={productAdded}
             />

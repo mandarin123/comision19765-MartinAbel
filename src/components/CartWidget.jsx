@@ -7,9 +7,7 @@ import { Link } from "react-router-dom";
 
 function CartWidget() {
 
-  const { cartList, deleteCart, deleteCartItem } = useContext(CartContext);
-
-  let totalPrice = 0;
+  const { cartList, deleteCart, deleteCartItem, counter, total } = useContext(CartContext);
 
   return (
 
@@ -73,8 +71,8 @@ function CartWidget() {
                   {cartList.map
                     (
                       prod => 
-                        <p key={prod.id}>
-                          {prod.counter}
+                        <p>
+                          {counter}
                         </p>
                     )
                   }
@@ -84,7 +82,7 @@ function CartWidget() {
                 {cartList.map
                     (
                       prod => 
-                        <p key={prod.id}>
+                        <p>
                           $ {prod.price * prod.counter}
                         </p>
                     )
@@ -103,10 +101,7 @@ function CartWidget() {
             </tbody>
             <th><h4>Precio Total</h4></th>
             <td>
-              {
-                cartList.map((prod) => {totalPrice = totalPrice + (prod.price * prod.counter)})
-              }
-              <h4>$ {totalPrice}</h4>
+              <h4>$ {total}</h4>
             </td>
             <Button onClick={deleteCart}>Borrar Carrito</Button>
           </Table>

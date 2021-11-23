@@ -18,13 +18,32 @@ function ItemListContainer() {
     
     useEffect(() => {
         
-        const dbQuery = getFiresore(); //conexion con firestore (base de datos)
-        
+        const dbQuery = getFiresore();
+        /* const prodCollection = dbQuery.collection('products');
 
+        if (!categoryID) {
+            prodCollection.get().then((querySnapshot) => {
+                let aux = [];
+                querySnapshot.docs.map(doc => aux.push({ id: doc.id, ...doc.data() }));
+                setProducts(aux);
+                setLoading(false);
+            });
+        }
+        else {
+            let categoryItems = prodCollection.where('category', '==', categoryID);
+            categoryItems.get().then((querySnapshot) => {
+                let aux = [];
+                querySnapshot.docs.map(doc => aux.push({ id: doc.id, ...doc.data() }));
+                setProducts(aux);
+                setLoading(false);
+            });
+        }
+    }, [categoryID]); */
+
+        
         /* dbQuery.collection('products').doc('27Vak1etNlFCuRXRILMU').get() //trae un solo item con el doc.('id')
         .then(resp => setProd( { id: resp.id, ...resp.data() } )) */
         //dbQuery.collection('products').where('categoria', '==', 'pasteleria').get() //trae por categoria en donde dice.where('categoria')
-
 
         if(categoryID === 'pasteleria'){
             dbQuery.collection('products').where('categoria', '==', 'pasteleria').get()
@@ -51,29 +70,14 @@ function ItemListContainer() {
                 .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
+        }else{
+            dbQuery.collection('products').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
         }
         },[categoryID]);
-
-
-
-        /* if (categoryID) {
-            getProducts
-            .then(res => {
-                setProducts(res.filter(prod => prod.categoria === categoryID))
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false))
-        } else {
-            getProducts
-            .then(res => {
-                setProducts(res)
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false)) 
-        }},[categoryID]); */
-        
-
-
+ 
     return (
         <>
             {
@@ -81,7 +85,7 @@ function ItemListContainer() {
                 ? 
                 <div style={spinnerStyle}><Spinner color="primary" size=""> </Spinner></div>
                 : 
-                <ItemList products={products}/>
+                <ItemList products={products} />
             }
             
         </>
