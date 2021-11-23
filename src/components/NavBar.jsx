@@ -13,6 +13,7 @@ import {
   Container,
   Row,
   Col,
+  Badge,
 } from "reactstrap";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -35,7 +36,7 @@ const NavBar = () => {
 
   const toggleModal2 = () => setModal2(!modal2);
 
-  const { cartTotal } = useContext(CartContext);
+  const { totalCart } = useContext(CartContext);
 
   return (
     <Container body outline>
@@ -188,9 +189,12 @@ const NavBar = () => {
                     display: "flex",
                     justifyContent: "inherit",
                     alignItems: "center",
-                  }}/>{cartTotal}
+                  }}/>
                 </Button>
               </Link>
+              <div className="navBarLinks">
+                {totalCart}
+              </div>
             </NavItem>
           </Col>
         </Nav>

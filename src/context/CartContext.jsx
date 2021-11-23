@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useRef, useState } from 'react';
 
 export const CartContext = createContext([]);
 
@@ -6,84 +6,93 @@ const CartContextProvider = ({ children }) => {
 
     const [cartList, setCartList] = useState([]);
 
+    const [total, setTotal] = useState(0);
+
     const [counter, setCounter] = useState(0);  
-    
-    const [cantidadAgregar, setcantidadAgregar]=useState(0);
-    const [cantTotal, setcantTotal]=useState(0);
-    const [total, setTotal]=useState(0);
+
+    const [totalCart, setTotalCart] = useState(0);
+    // const cartListRef = useRef(cartList);
+    // const totalRef = useRef(total);
+    // const counterRef = useRef(counter);
 
 
-
-    const isInCart = (id) => {
-        return cartList.find(prod => prod.id === id)
+    const totalCartWidget = () => {
+        setTotalCart(totalCart + counter)
     };
-
-    const addCartItem = (item) =>{
-        
-        console.log('additem')
-        let Item=isInCart(parseInt(item.id))
-        if (Item)
-        {   
-            let cantAgregar= parseInt(Item.cantidad) + parseInt(item.cantidad)
-            setcantidadAgregar(cantAgregar)
-            if (cantAgregar > item.stock)
-             {
-                 alert('No hay Stock para la cantidad ingresada')   
-             }  
-             else
-             {
-                Item.cantidad=cantAgregar
-                setTotal(total +(item.cantidad * item.price))
-                setcantTotal(cantTotal + item.cantidad)
-             }
-        }
-        else
-        {
-                setCartList([...cartList, item])
-                setTotal(total + (item.cantidad * item.price))
-                setcantTotal(cantTotal + item.cantidad)
-        }
- 
-    }
-
-    /* const addCartItem = (item, counter) => {
-        if(isInCart(item, counter)){
-            let newCartList = cartList;
-            newCartList.forEach((cartItem) => {
+    
+    const isInCart = (item) => {
+        return cartList.some(prod => prod.id === item.id)
+    };
+    
+    const addCartItem = (item, counter) =>{
+        let itemToAdd = null;
+        if(isInCart(item)){
+            let newCart = cartList;
+            newCart.forEach((cartItem) => {
                 if(cartItem.id === item.id){
-                    cartItem.counter += item.counter
+                    cartItem.counter += counter;
                 }
             });
-            setCartList(newCartList);
-        }else{
-            setCartList( [item, counter] )
-        }
-    }; */
+            itemToAdd = newCart;
 
-    const deleteCartItem = (id) => {
+        }else{
+            itemToAdd = [...cartList, {...item, counter}];
+        }
+        setCartList(itemToAdd);
+        setTotalCart(totalCart + counter);
+        setCounter(0);
+        totalPrice();
+        // updateState(0, totalCart + counter, itemToAdd);
+    };
+
+    const deleteCartItem = (id, prod) => {
+        let item = cartList.find(x => x.id === id);
         setCartList(cartList.filter(item => item.id !== id));
+        setTotalCart(totalCart - item.counter);
+        setCounter(0);
+        totalPrice();
     };
 
     const deleteCart = () => {
-        setCartList([])
+        setCartList([]);
+        setTotalCart(0);
+        setTotal(0);
     };
 
-    const totalPrice = (item) => {
-        return counter * parseInt(item.price)
+    const totalPrice = () => {
+        let acum = 0;
+        //hola profe, por que no me mantiene el valor del coso?
+        //usted dirá "pero que coso?"
+        if (cartList.length > 0) {// <= este coso
+              cartList.forEach(prod => {
+               acum += (prod.price * prod.counter);
+          });
+        }
+        return setTotal(acum);
     };
 
-    console.log("totalPrice",totalPrice)
+    // const updateState = (newCounterState, newTotalState, newCartListState) => {
+    //      totalRef.current = newTotalState;
+    //      setTotal(newTotalState);
+         
+    //      counterRef.current = newCounterState; 
+    //      setCounter(newCounterState)
+
+    //      cartListRef.current = newCartListState; 
+    //      setCartList(newCartListState)    
+    //     };
     
     return (
         <CartContext.Provider value={{
             cartList,
-            addCartItem,
             deleteCart,
             deleteCartItem,
             counter,
             setCounter,
+            addCartItem,
             totalPrice,
-            cantTotal,
+            totalCartWidget,
+            totalCart,
             total
         }}>
            {children} 

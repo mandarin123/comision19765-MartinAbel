@@ -7,10 +7,9 @@ import { Link } from "react-router-dom";
 
 function CartWidget() {
 
-  const { cartList, deleteCart, deleteCartItem, counter, total } = useContext(CartContext);
+  const { cartList, deleteCart, deleteCartItem, counter, totalPrice, total } = useContext(CartContext);
 
   return (
-
       <div>
         <h1 className="shopCartTitle">Carrito de compras</h1>
         <br/>
@@ -72,7 +71,7 @@ function CartWidget() {
                     (
                       prod => 
                         <p>
-                          {counter}
+                          {prod.counter}
                         </p>
                     )
                   }
@@ -101,7 +100,9 @@ function CartWidget() {
             </tbody>
             <th><h4>Precio Total</h4></th>
             <td>
-              <h4>$ {total}</h4>
+                <h4>
+                  $ {total}
+                </h4>
             </td>
             <Button onClick={deleteCart}>Borrar Carrito</Button>
           </Table>

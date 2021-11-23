@@ -19,6 +19,7 @@ const AddedToCart = () => {
 
 function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, productAdded }) {
 
+
   const { counter } = useContext(CartContext);
 
     return (
@@ -32,7 +33,7 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
             <Button
               color="primary"
               className="buttonsAddRemove"
-              onClick={addProducts}
+              onClick={() => addProducts()}
               disabled={counter >= stock || productAdded}
             >
               +

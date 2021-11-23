@@ -18,10 +18,10 @@ const ItemDetailContainer = () => {
 
     const [productAdded, setProductAdded] = useState(false);
 
-    const { addCartItem, counter, setCounter, totalPrice } = useContext(CartContext);
+    const { addCartItem, counter, setCounter, totalPrice, totalCart, setTotalCart } = useContext(CartContext);
 
     const addProducts = () => {
-        setCounter(counter + 1); 
+        setCounter(counter + 1)
     };
     
     const subtractProduct = () => {
@@ -31,8 +31,9 @@ const ItemDetailContainer = () => {
     const onAdd = () => {
         counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
         addCartItem(item, counter);
-        totalPrice(counter * item.price);
+        // totalPrice(counter);
     };
+    
 
     useEffect(() => {
         
@@ -49,7 +50,7 @@ const ItemDetailContainer = () => {
             setLoading(false);
             });
         },[prodID]);
-        
+
     return (
         <div className="modals">
         {
