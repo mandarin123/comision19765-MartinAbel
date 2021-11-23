@@ -19,8 +19,8 @@ const mostrarPedirCotizacion = () => {
     text: "Para poder hacer un presupuesto más preciso mejor escribinos",
     icon: "warning",
     button: "Cerrar"
-  })
-}
+  });
+};
 
 
 const ItemDetail = ({ prod, counter, addProducts, subtractProduct, onAdd, productAdded }) => {
@@ -28,7 +28,7 @@ const ItemDetail = ({ prod, counter, addProducts, subtractProduct, onAdd, produc
     return (
       <Card className="itemDetailCard">
         <CardImg
-          alt={prod.imgDesc}W
+          alt={prod.imgDesc}
           src={
             (prod.imgUrl === "") ? imageNotAvailable : prod.imgUrl
           }

@@ -2,29 +2,61 @@ import React, { useEffect, useState } from 'react';
 import { Spinner } from 'reactstrap';
 import '../App.css';
 import ItemList from './ItemList';
-import { products } from './Products';
 import { useParams } from 'react-router';
+import { getFiresore } from '../service/getFirestone';
  
-
-const getProducts = new Promise((res) => {
-    setTimeout(() => {
-        res(products)
-    }, 2000);
-});
-
 const spinnerStyle = {
     textAlign: "center",
 }
 
 function ItemListContainer() {    
 
-    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [products, setProducts] = useState([]);
+    
     const { categoryID } = useParams();
-
+    
     useEffect(() => {
-        if (categoryID) {
+        
+        const dbQuery = getFiresore(); //conexion con firestore (base de datos)
+        
+
+        /* dbQuery.collection('products').doc('27Vak1etNlFCuRXRILMU').get() //trae un solo item con el doc.('id')
+        .then(resp => setProd( { id: resp.id, ...resp.data() } )) */
+        //dbQuery.collection('products').where('categoria', '==', 'pasteleria').get() //trae por categoria en donde dice.where('categoria')
+
+
+        if(categoryID === 'pasteleria'){
+            dbQuery.collection('products').where('categoria', '==', 'pasteleria').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }else if(categoryID === 'tartas'){
+            dbQuery.collection('products').where('categoria', '==', 'tartas').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }else if(categoryID === 'torta'){
+            dbQuery.collection('products').where('categoria', '==', 'torta').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }else if(categoryID === 'desayuno'){
+            dbQuery.collection('products').where('categoria', '==', 'desayuno').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }else if(categoryID === 'eventosEsp'){
+            dbQuery.collection('products').where('categoria', '==', 'eventosEsp').get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }
+        },[categoryID]);
+
+
+
+        /* if (categoryID) {
             getProducts
             .then(res => {
                 setProducts(res.filter(prod => prod.categoria === categoryID))
@@ -38,8 +70,8 @@ function ItemListContainer() {
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false)) 
-        };
-    },[categoryID]);
+        }},[categoryID]); */
+        
 
 
     return (

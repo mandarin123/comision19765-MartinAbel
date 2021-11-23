@@ -7,7 +7,8 @@ const CartContextProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
     const [cartTotal, setCartTotal] = useState();
-    
+
+    const [counter, setCounter] = useState(0);    
 
     const isInCart = (item) => {
         return cartList.some(prod => prod.id === item.id)
@@ -27,8 +28,8 @@ const CartContextProvider = ({ children }) => {
         }
     };
 
-    const addCartTotal = (item) => {
-        setCartTotal(item.counter + 1);
+    const addCartTotal = () => {
+        setCartTotal(counter + counter);
     };
 
     const deleteCartItem = (id) => {
@@ -46,7 +47,9 @@ const CartContextProvider = ({ children }) => {
             addCartItem,
             deleteCart,
             deleteCartItem,
-            addCartTotal
+            addCartTotal,
+            counter,
+            setCounter
         }}>
            {children} 
         </CartContext.Provider>

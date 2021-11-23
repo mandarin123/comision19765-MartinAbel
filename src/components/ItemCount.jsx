@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ButtonGroup } from 'reactstrap';
 import "../App.css";
+import { CartContext } from '../context/CartContext';
 
 
 const AddedToCart = () => {
@@ -14,7 +15,11 @@ const AddedToCart = () => {
   )
 };
 
-function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, counter, productAdded }) {
+
+
+function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, productAdded }) {
+
+  const { counter } = useContext(CartContext);
 
     return (
       <div>

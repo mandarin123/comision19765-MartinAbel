@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { Spinner } from 'reactstrap';
 import { CartContext } from '../context/CartContext';
+import { getFiresore } from '../service/getFirestone';
 import ItemDetail  from './ItemDetail';
 import { products } from './Products';
 
@@ -19,14 +20,14 @@ const ItemDetailContainer = () => {
     const [item, setItem] = useState();
 
     const [loading, setLoading] = useState(true);
+
+    const [products, setProducts] = useState([]);
     
     const { prodID } = useParams(); 
 
     const [productAdded, setProductAdded] = useState(false);
 
-    const [counter, setCounter] = useState(initial);
-
-    const { addCartItem, addCartTotal } = useContext(CartContext);
+    const { addCartItem, addCartTotal, counter, setCounter } = useContext(CartContext);
 
     const addProducts = () => {
         setCounter(counter + 1); 
@@ -43,6 +44,24 @@ const ItemDetailContainer = () => {
     };
 
     useEffect(() => {
+        
+        const dbQuery = getFiresore(); //conexion con firestore (base de datos)
+        
+
+        /* dbQuery.collection('products').doc('27Vak1etNlFCuRXRILMU').get() //trae un solo item con el doc.('id')
+        .then(resp => setProd( { id: resp.id, ...resp.data() } )) */
+        //dbQuery.collection('products').where('categoria', '==', 'pasteleria').get() //trae por categoria en donde dice.where('categoria')
+
+
+        if(prodID){
+            dbQuery.collection('products').doc(prodID).get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }
+        },[prodID]);
+
+    /* useEffect(() => {
         if(prodID){
             getItem
                 .then(res => {
@@ -51,7 +70,7 @@ const ItemDetailContainer = () => {
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
         }
-    },[prodID]);
+    },[prodID]); */
 
     
     return (
