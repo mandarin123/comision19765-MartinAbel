@@ -34,8 +34,8 @@ const CartContextProvider = ({ children }) => {
         }
         setCartList(itemToAdd);
         setTotalCart(totalCart + counter);
-        totalPrice();
         setCounter(0);
+        totalPrice();
         // updateState(0, totalCart + counter, itemToAdd);
     };
 
@@ -44,7 +44,6 @@ const CartContextProvider = ({ children }) => {
         setCartList(cartList.filter(item => item.id !== id));
         setTotalCart(totalCart - item.counter);
         setCounter(0);
-        totalPrice();
     };
 
     const deleteCart = () => {

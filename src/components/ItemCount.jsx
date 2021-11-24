@@ -7,11 +7,21 @@ import { CartContext } from '../context/CartContext';
 
 const AddedToCart = () => {
   return (
-      <Button color="primary" >
+    <div>
+
+      <Button color="primary" className="buttonIR"  >
         <Link to="/cart" className="buttonIr">
           Ir al carrito
         </Link>
       </Button>
+
+      <Button color="primary" className="buttonIR">
+        <Link to="/productos" className="buttonIr">
+          Continuar comprando
+        </Link>
+      </Button>
+
+    </div>
   )
 };
 
@@ -23,9 +33,7 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
     return (
       <div>
         {productAdded ? (
-          <Button className="buttonIr" color="primary">
             <AddedToCart />
-          </Button>
         ) : (
           <ButtonGroup>
             <Button

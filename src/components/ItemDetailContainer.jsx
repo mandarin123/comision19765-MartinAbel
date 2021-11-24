@@ -42,7 +42,6 @@ const ItemDetailContainer = () => {
         
         firebaseProd.get()
             .then(doc => {
-                console.log(prodID)
             if (doc.exists) setItem({ id: doc.id, ...doc.data() });
             })
             .finally(() =>{

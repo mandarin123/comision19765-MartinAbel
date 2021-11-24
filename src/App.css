@@ -61,6 +61,10 @@
     text-decoration: none;
 }
 
+.buttonIR {
+    margin-left: 10px;
+}
+
 .shopCartTitle{
     align-items: center;
     justify-content: center;

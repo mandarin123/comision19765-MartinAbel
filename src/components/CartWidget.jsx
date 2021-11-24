@@ -30,7 +30,6 @@ function CartWidget() {
     })
     //llamada al servidor va aca
 
-    console.log(order);
   }
 
   const endBuyingForm = () => {
@@ -67,7 +66,6 @@ function CartWidget() {
       <div>
         <h1 className="shopCartTitle">Carrito de compras</h1>
         <br/>
-        {console.log(cartList)}
         {
           cartList.length === 0
           ?
@@ -155,7 +153,7 @@ function CartWidget() {
             <th><h4>Precio Total</h4></th>
             <td>
                 <h4>
-                  $ {() => totalPrice()}
+                  $ {totalPrice()}
                 </h4>
             </td>
             <Button onClick={deleteCart}>Borrar Carrito</Button>
