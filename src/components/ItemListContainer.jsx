@@ -20,38 +20,13 @@ function ItemListContainer() {
         
         const dbQuery = getFiresore();     
         
-        if(categoryID === 'pasteleria'){
-            dbQuery.collection('products').where('categoria', '==', 'pasteleria').get()
-                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }else if(categoryID === 'tartas'){
-            dbQuery.collection('products').where('categoria', '==', 'tartas').get()
-                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }else if(categoryID === 'torta'){
-            dbQuery.collection('products').where('categoria', '==', 'torta').get()
-                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }else if(categoryID === 'desayuno'){
-            dbQuery.collection('products').where('categoria', '==', 'desayuno').get()
-                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }else if(categoryID === 'eventosEsp'){
-            dbQuery.collection('products').where('categoria', '==', 'eventosEsp').get()
-                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }else{
-            dbQuery.collection('products').get()
+        if(categoryID){
+            dbQuery.collection('products').where('categoria', '==', categoryID ).get()
                 .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
         }
-        },[categoryID]);
+    },[categoryID]);
  
     return (
         <>
@@ -67,5 +42,5 @@ function ItemListContainer() {
     )
 }
 
-export default ItemListContainer
 
+export default ItemListContainer

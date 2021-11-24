@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import "../App.css";
-import { Button, Form, Input, InputGroup, InputGroupText, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
+import { Button, Form, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
 import { imageNotAvailable } from "./Item";
 import { Link } from "react-router-dom";
 import { getFiresore } from "../service/getFirestone";
@@ -34,19 +34,21 @@ const CartWidget = () => {
       const id = cartItem.id;
       const name = cartItem.title;
       const price = cartItem.price * cartItem.counter;
+      const totalItem = cartItem.counter;
 
-      return {id, name, price};
+      return {id, name, price, totalItem};
     });
 
     const dbQuery = getFiresore();
 
     dbQuery.collection('orders').add(order)
       .then(resp => console.log(resp))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+
+    toggleModal();
     };
 
   const handleChange = (e) => {
-    e.preventDefault();
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -57,14 +59,15 @@ const CartWidget = () => {
     return (
       <Form
         onSubmit={generateOrder}
-        onChange={handleChange}
       >
         <FormGroup>
           <Label for="nombreyapellido">Nombre y Apellido</Label>
             <Input
-              type="nombreyapellido"
-              id="nombreyapellido"
-              value={formData.name}
+              type="nombreYApellido"
+              id="nombreYApellido"
+              name="name"
+              defaultValue={formData.name}
+              onBlur={handleChange}
             >
             </Input>
         </FormGroup>
@@ -75,7 +78,9 @@ const CartWidget = () => {
           <Input
             placeholder="Celular"
             type="text"
-            value={formData.phone}
+            name="phone"
+            defaultValue={formData.phone}
+            onBlur={handleChange}
           >
           </Input>
         </FormGroup>
@@ -84,7 +89,9 @@ const CartWidget = () => {
           <Input
             placeholder="email@example.com"
             type="mail"
-            value={formData.email}
+            name="email"
+            defaultValue={formData.email}
+            onBlur={handleChange}
           >
           </Input>
         </FormGroup>
@@ -187,6 +194,7 @@ const CartWidget = () => {
                 </h4>
             </td>
             <Button onClick={deleteCart} color="primary">Borrar Carrito</Button>
+            <br />
             <Button
                   color="primary"
                   onClick={toggleModal}
@@ -203,12 +211,11 @@ const CartWidget = () => {
                     <EndBuyingForm />
                   </ModalBody>
                   <ModalFooter>
-                  <Button color="primary">Enviar Pedido</Button>
+                    <Button color="primary" onClick={generateOrder}>Enviar Pedido</Button>
                   </ModalFooter>
                 </Modal>
           </Table>
       }
-      <Button onClick={generateOrder}>click</Button>
     </div>
       
   );
