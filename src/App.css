@@ -65,6 +65,13 @@
     margin-left: 10px;
 }
 
+.buttonSeguirComprando{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+
 .shopCartTitle{
     align-items: center;
     justify-content: center;

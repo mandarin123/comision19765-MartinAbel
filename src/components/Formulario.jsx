@@ -6,7 +6,7 @@ function Formulario() {
   return (
 
     <Form>
-        <FormGroup style={{paddingBottom:10}}>
+      <FormGroup style={{paddingBottom:10}}>
         <Label for="NombeyApellido">Nombre y Apellido</Label>
         <Input
           type="nombreyapellido"

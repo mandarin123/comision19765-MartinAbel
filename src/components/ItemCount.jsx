@@ -39,10 +39,10 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
             <Button
               color="primary"
               className="buttonsAddRemove"
-              onClick={() => addProducts()}
-              disabled={counter >= stock || productAdded}
+              onClick={subtractProduct}
+              disabled={counter === initial || productAdded}
             >
-              +
+              -
             </Button>
 
             <div className="quantityCounter text-primary">
@@ -52,10 +52,10 @@ function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, pr
             <Button
               color="primary"
               className="buttonsAddRemove"
-              onClick={subtractProduct}
-              disabled={counter === initial || productAdded}
+              onClick={() => addProducts()}
+              disabled={counter >= stock || productAdded}
             >
-              -
+              +
             </Button>
             <Button color="primary" onClick={onAdd}>
               Agregar producto

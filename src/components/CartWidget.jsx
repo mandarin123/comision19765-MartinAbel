@@ -1,64 +1,94 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import "../App.css";
-import { Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
+import { Button, Form, Input, InputGroup, InputGroupText, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
 import { imageNotAvailable } from "./Item";
 import { Link } from "react-router-dom";
+import { getFiresore } from "../service/getFirestone";
+import firebase from "firebase";
+import { FormGroup } from "@mui/material";
 
-function CartWidget() {
+
+const CartWidget = () => {
 
   const { cartList, deleteCart, deleteCartItem, totalPrice } = useContext(CartContext);
 
-  const buyer = {
-    name: "Martin Abel",
-    phone: 2616826404,
-    email: "martin.g.abel.d@gmail.com"
-  };
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => setModal(!modal);
 
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: ''
+  });
+  
   const generateOrder = (e) => {
-    e.preventDefault()
-    const order = {}
+    e.preventDefault();
 
-    order.buyer = {name: 'Martin Abel', phone: '2626826404', email: 'martin.g.abel.d@gmail.com' };
+    const order = {};
+    order.date = firebase.firestore.Timestamp.fromDate(new Date());
+    order.buyer = formData;
     order.total = totalPrice();
 
     order.items = cartList.map(cartItem => {
       const id = cartItem.id;
       const name = cartItem.title;
-      const price = cartItem.price * cartItem.counter
-      return {id, name, price}
-    })
-    //llamada al servidor va aca
+      const price = cartItem.price * cartItem.counter;
 
-  }
+      return {id, name, price};
+    });
 
-  const endBuyingForm = () => {
+    const dbQuery = getFiresore();
+
+    dbQuery.collection('orders').add(order)
+      .then(resp => console.log(resp))
+      .catch(err => console.log(err))
+    };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const EndBuyingForm = () => {
     return (
-      <div>
-        <InputGroup>
-          <InputGroupText>
-            Nombre y Apellido
-          </InputGroupText>
-          <Input placeholder="Nombre" />
-        </InputGroup>
+      <Form
+        onSubmit={generateOrder}
+        onChange={handleChange}
+      >
+        <FormGroup>
+          <Label for="nombreyapellido">Nombre y Apellido</Label>
+            <Input
+              type="nombreyapellido"
+              id="nombreyapellido"
+              value={formData.name}
+            >
+            </Input>
+        </FormGroup>
+
         <br />
-        <InputGroup>
-          <InputGroupText>
-            Cel
-          </InputGroupText>
-          <Input placeholder="telefono" />
-        </InputGroup>
+
+        <FormGroup>
+          <Input
+            placeholder="Celular"
+            type="text"
+            value={formData.phone}
+          >
+          </Input>
+        </FormGroup>
         <br />
-        <InputGroup>
-          <InputGroupText>
-            @
-          </InputGroupText>
-          <Input placeholder="email" />
-        </InputGroup>
-        <Button color="primary">
-          Enviar Pedido
-        </Button>
-      </div>
+        <FormGroup>
+          <Input
+            placeholder="email@example.com"
+            type="mail"
+            value={formData.email}
+          >
+          </Input>
+        </FormGroup>
+      </Form>
     )
   };
 
@@ -71,8 +101,8 @@ function CartWidget() {
           ?
           <div>
             <h1 className="continuarCompra">Carrito vacio, continua con tu compra</h1>
-            <Link to="/productos">
-              <Button style={{ display: "block", margin: "auto", textDecoration: "none" }}>Continuar comprando</Button>
+            <Link to="/productos" className="buttonSeguirComprando">
+              <Button color="primary">Continuar comprando</Button>
             </Link>
             <img
             src="https://lh3.googleusercontent.com/7y4i8GNrhsi-6nZQsJEkO3Gs7mOtLsIEBzSZpHLK6FLDAHQLsZMQHtpU5FLrrYAKcyokXzXBQ6fGWAbnpTuYIpp156I5NXaohHVw18SfH4tnFBVWMryzpLXpAPpfgzPUIM0pKCbt5CU=w2400"
@@ -143,7 +173,7 @@ function CartWidget() {
                 <th scope="row">
                   {cartList.map
                     (
-                      (prod) => <p><Button onClick={() => deleteCartItem(prod.id)}>Borrar Item</Button></p>
+                      (prod) => <p><Button onClick={() => deleteCartItem(prod.id)} color="primary">Borrar Item</Button></p>
                     )
                   }
                 </th>
@@ -156,7 +186,26 @@ function CartWidget() {
                   $ {totalPrice()}
                 </h4>
             </td>
-            <Button onClick={deleteCart}>Borrar Carrito</Button>
+            <Button onClick={deleteCart} color="primary">Borrar Carrito</Button>
+            <Button
+                  color="primary"
+                  onClick={toggleModal}
+                  className="navBarLinks"
+                  style={{ textDecoration: "none" }}
+                >
+                  Finalizar compra
+            </Button>
+            <Modal isOpen={modal} toggle={toggleModal} className="modals">
+                  <ModalHeader>
+                    Envia tus datos para realizar el pedido
+                  </ModalHeader>
+                  <ModalBody>
+                    <EndBuyingForm />
+                  </ModalBody>
+                  <ModalFooter>
+                  <Button color="primary">Enviar Pedido</Button>
+                  </ModalFooter>
+                </Modal>
           </Table>
       }
       <Button onClick={generateOrder}>click</Button>
