@@ -1,13 +1,67 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import "../App.css";
-import { Button, Table } from "reactstrap";
+import { Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
 import { imageNotAvailable } from "./Item";
 import { Link } from "react-router-dom";
 
 function CartWidget() {
 
-  const { cartList, deleteCart, deleteCartItem, total } = useContext(CartContext);
+  const { cartList, deleteCart, deleteCartItem, totalPrice } = useContext(CartContext);
+
+  const buyer = {
+    name: "Martin Abel",
+    phone: 2616826404,
+    email: "martin.g.abel.d@gmail.com"
+  };
+
+  const generateOrder = (e) => {
+    e.preventDefault()
+    const order = {}
+
+    order.buyer = {name: 'Martin Abel', phone: '2626826404', email: 'martin.g.abel.d@gmail.com' };
+    order.total = totalPrice();
+
+    order.items = cartList.map(cartItem => {
+      const id = cartItem.id;
+      const name = cartItem.title;
+      const price = cartItem.price * cartItem.counter
+      return {id, name, price}
+    })
+    //llamada al servidor va aca
+
+    console.log(order);
+  }
+
+  const endBuyingForm = () => {
+    return (
+      <div>
+        <InputGroup>
+          <InputGroupText>
+            Nombre y Apellido
+          </InputGroupText>
+          <Input placeholder="Nombre" />
+        </InputGroup>
+        <br />
+        <InputGroup>
+          <InputGroupText>
+            Cel
+          </InputGroupText>
+          <Input placeholder="telefono" />
+        </InputGroup>
+        <br />
+        <InputGroup>
+          <InputGroupText>
+            @
+          </InputGroupText>
+          <Input placeholder="email" />
+        </InputGroup>
+        <Button color="primary">
+          Enviar Pedido
+        </Button>
+      </div>
+    )
+  };
 
   return (
       <div>
@@ -101,12 +155,13 @@ function CartWidget() {
             <th><h4>Precio Total</h4></th>
             <td>
                 <h4>
-                  $ {total}
+                  $ {() => totalPrice()}
                 </h4>
             </td>
             <Button onClick={deleteCart}>Borrar Carrito</Button>
           </Table>
       }
+      <Button onClick={generateOrder}>click</Button>
     </div>
       
   );

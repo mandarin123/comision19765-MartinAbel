@@ -6,15 +6,9 @@ const CartContextProvider = ({ children }) => {
 
     const [cartList, setCartList] = useState([]);
 
-    const [total, setTotal] = useState(0);
-
     const [counter, setCounter] = useState(0);  
 
     const [totalCart, setTotalCart] = useState(0);
-    // const cartListRef = useRef(cartList);
-    // const totalRef = useRef(total);
-    // const counterRef = useRef(counter);
-
 
     const totalCartWidget = () => {
         setTotalCart(totalCart + counter)
@@ -56,32 +50,12 @@ const CartContextProvider = ({ children }) => {
     const deleteCart = () => {
         setCartList([]);
         setTotalCart(0);
-        setTotal(0);
     };
 
     const totalPrice = () => {
-        let acum = 0;
-        //hola profe, por que no me mantiene el valor del coso?
-        //usted dirá "pero que coso?"
-        if (cartList.length > 0) {// <= este coso
-              cartList.forEach(prod => {
-               acum += (prod.price * prod.counter);
-          });
-        }
-        return setTotal(acum);
+        return cartList.reduce((acum, valor) => (acum + (valor.counter * valor.price)), 0);
     };
-
-    // const updateState = (newCounterState, newTotalState, newCartListState) => {
-    //      totalRef.current = newTotalState;
-    //      setTotal(newTotalState);
-         
-    //      counterRef.current = newCounterState; 
-    //      setCounter(newCounterState)
-
-    //      cartListRef.current = newCartListState; 
-    //      setCartList(newCartListState)    
-    //     };
-    
+  
     return (
         <CartContext.Provider value={{
             cartList,
@@ -93,7 +67,6 @@ const CartContextProvider = ({ children }) => {
             totalPrice,
             totalCartWidget,
             totalCart,
-            total
         }}>
            {children} 
         </CartContext.Provider>
