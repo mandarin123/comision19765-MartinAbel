@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
 
     const [productAdded, setProductAdded] = useState(false);
 
-    const { addCartItem, counter, setCounter, totalPrice, totalCart, setTotalCart } = useContext(CartContext);
+    const { addCartItem, counter, setCounter } = useContext(CartContext);
 
     const addProducts = () => {
         setCounter(counter + 1)
@@ -31,13 +31,12 @@ const ItemDetailContainer = () => {
     const onAdd = () => {
         counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
         addCartItem(item, counter);
-        // totalPrice(counter);
     };
     
 
     useEffect(() => {
         
-        const dbQuery = getFiresore(); //conexion con firestore (base de datos)
+        const dbQuery = getFiresore(); 
         const prodCollection = dbQuery.collection('products');
         const firebaseProd = prodCollection.doc(prodID);
         

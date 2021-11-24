@@ -18,33 +18,8 @@ function ItemListContainer() {
     
     useEffect(() => {
         
-        const dbQuery = getFiresore();
-        /* const prodCollection = dbQuery.collection('products');
-
-        if (!categoryID) {
-            prodCollection.get().then((querySnapshot) => {
-                let aux = [];
-                querySnapshot.docs.map(doc => aux.push({ id: doc.id, ...doc.data() }));
-                setProducts(aux);
-                setLoading(false);
-            });
-        }
-        else {
-            let categoryItems = prodCollection.where('category', '==', categoryID);
-            categoryItems.get().then((querySnapshot) => {
-                let aux = [];
-                querySnapshot.docs.map(doc => aux.push({ id: doc.id, ...doc.data() }));
-                setProducts(aux);
-                setLoading(false);
-            });
-        }
-    }, [categoryID]); */
-
+        const dbQuery = getFiresore();     
         
-        /* dbQuery.collection('products').doc('27Vak1etNlFCuRXRILMU').get() //trae un solo item con el doc.('id')
-        .then(resp => setProd( { id: resp.id, ...resp.data() } )) */
-        //dbQuery.collection('products').where('categoria', '==', 'pasteleria').get() //trae por categoria en donde dice.where('categoria')
-
         if(categoryID === 'pasteleria'){
             dbQuery.collection('products').where('categoria', '==', 'pasteleria').get()
                 .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))

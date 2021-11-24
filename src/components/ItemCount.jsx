@@ -15,8 +15,6 @@ const AddedToCart = () => {
   )
 };
 
-
-
 function ItemCount({ stock, initial = 0, addProducts, subtractProduct, onAdd, productAdded }) {
 
 

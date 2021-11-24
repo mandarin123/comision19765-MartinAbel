@@ -13,7 +13,6 @@ import {
   Container,
   Row,
   Col,
-  Badge,
 } from "reactstrap";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -182,20 +181,27 @@ const NavBar = () => {
           </Col>
 
           <Col>
-            <NavItem style={{ float: "right" }}>
-              <Link to="/cart">
-                <Button color="link" className="navBarLinks">
-                  <ShoppingCart color="action"  style={{
-                    display: "flex",
-                    justifyContent: "inherit",
-                    alignItems: "center",
-                  }}/>
-                </Button>
-              </Link>
-              <div className="navBarLinks">
-                {totalCart}
-              </div>
-            </NavItem>
+          {
+            totalCart === 0
+              ?
+                <>
+                </>
+              : 
+                <NavItem style={{ float: "right" }}>
+                  <Link to="/cart">
+                    <Button color="link" className="navBarLinks">
+                      <ShoppingCart color="action"  style={{
+                        display: "flex",
+                        justifyContent: "inherit",
+                        alignItems: "center",
+                      }}/>
+                    </Button>
+                  </Link>
+                  <div className="navBarLinks">
+                    {totalCart}
+                  </div>
+                </NavItem>
+          }
           </Col>
         </Nav>
       </Row>
