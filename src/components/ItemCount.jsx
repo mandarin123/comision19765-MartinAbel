@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ButtonGroup } from 'reactstrap';
-import "../App.css";
 import { CartContext } from '../context/CartContext';
-
+import "../App.css";
 
 const AddedToCart = () => {
   return (

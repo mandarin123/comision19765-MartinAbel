@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'reactstrap';
-import '../App.css';
 import ItemList from './ItemList';
 import { useParams } from 'react-router';
 import { getFiresore } from '../service/getFirestone';
+import '../App.css';
  
 const spinnerStyle = {
     textAlign: "center",
@@ -22,6 +22,11 @@ function ItemListContainer() {
         
         if(categoryID){
             dbQuery.collection('products').where('categoria', '==', categoryID ).get()
+                .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
+        }else{
+            dbQuery.collection('products').get()
                 .then(data => setProducts( data.docs.map(pro => ( { id: pro.id, ...pro.data() } ) )))
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))

@@ -5,7 +5,7 @@ function CardContainer() {
 
     return (
         <div>
-            <ItemCount stock={6} initial={0} product={'Brownie Alpino'} />
+            <ItemCount />
         </div>
     )
 }

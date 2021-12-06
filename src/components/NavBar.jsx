@@ -17,28 +17,23 @@ import {
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Formulario from "./Formulario";
-import "../App.css";
 import ItemListContainer from "./ItemListContainer";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { CartContext } from "../context/CartContext";
+import "../App.css";
 
 const NavBar = () => {
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const toggle = () => setDropdownOpen(!dropdownOpen);
-
   const [modal, setModal] = useState(false);
-
   const toggleModal = () => setModal(!modal);
-
   const [modal2, setModal2] = useState(false);
-
   const toggleModal2 = () => setModal2(!modal2);
-
   const { totalCart } = useContext(CartContext);
 
   return (
-    <Container body outline>
+    <Container>
       <Row className="navBarMenu">
         <Nav pills>
           <Col xs="auto">
@@ -53,9 +48,6 @@ const NavBar = () => {
                 </Button>
               </Link>
             </div>
-            {/* 
-              <NavItem className="navBarLinks">Home</NavItem>
-            */}
           </Col>
 
           <Col xs="auto">

@@ -22,6 +22,7 @@ const Item = ({prod}) => {
                     (prod.imgUrl === "") ? imageNotAvailable : prod.imgUrl
                   }
                 top
+                className="photoItem"
             />
             <CardBody>
                 <CardTitle tag="h5"><h3>{prod.title}</h3></CardTitle>

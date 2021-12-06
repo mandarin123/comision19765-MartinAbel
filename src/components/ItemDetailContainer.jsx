@@ -5,19 +5,13 @@ import { CartContext } from '../context/CartContext';
 import { getFiresore } from '../service/getFirestone';
 import ItemDetail  from './ItemDetail';
 
-
 const ItemDetailContainer = () => {
 
     const initial = 0;
-
     const [item, setItem] = useState();
-
     const [loading, setLoading] = useState(true);
-    
     const { prodID } = useParams(); 
-
     const [productAdded, setProductAdded] = useState(false);
-
     const { addCartItem, counter, setCounter } = useContext(CartContext);
 
     const addProducts = () => {
@@ -29,7 +23,7 @@ const ItemDetailContainer = () => {
     };
     
     const onAdd = () => {
-        counter > initial ? setProductAdded(true)  : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
+        counter > initial ? setProductAdded(true) : alert(`No se puede agregar ${counter} de ${item.title} al carrito`);
         addCartItem(item, counter);
     };
     
@@ -44,9 +38,7 @@ const ItemDetailContainer = () => {
             .then(doc => {
             if (doc.exists) setItem({ id: doc.id, ...doc.data() });
             })
-            .finally(() =>{
-            setLoading(false);
-            });
+            .finally(() =>{setLoading(false)});
         },[prodID]);
 
     return (

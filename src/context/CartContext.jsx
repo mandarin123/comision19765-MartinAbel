@@ -5,9 +5,7 @@ export const CartContext = createContext([]);
 const CartContextProvider = ({ children }) => {
 
     const [cartList, setCartList] = useState([]);
-
     const [counter, setCounter] = useState(0);  
-
     const [totalCart, setTotalCart] = useState(0);
 
     const totalCartWidget = () => {
@@ -36,7 +34,6 @@ const CartContextProvider = ({ children }) => {
         setTotalCart(totalCart + counter);
         setCounter(0);
         totalPrice();
-        // updateState(0, totalCart + counter, itemToAdd);
     };
 
     const deleteCartItem = (id, prod) => {

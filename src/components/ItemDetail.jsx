@@ -8,8 +8,8 @@ import {
     Button
 } from 'reactstrap'; 
 import swal from '@sweetalert/with-react';
-import "../App.css";
 import ItemCount from './ItemCount';
+import "../App.css";
 
 const imageNotAvailable = "https://lh3.googleusercontent.com/lUbKz6nyIzbssdhZBhs8_9s-4w8UnkdQfRvV0jwcfWxxRBZThssSAc4lBN5D0A0EfuLQOZgAFda0wodAli_qXxfjqNw9gnfn-rGdFPUKSpD24yb5_SsvtPt0E2sfBCPFmI-P5fkn5Vc=w2400";
 
@@ -22,11 +22,7 @@ const mostrarPedirCotizacion = () => {
   });
 };
 
-
 const ItemDetail = ({ item, addProducts, subtractProduct, onAdd, productAdded }) => {
-
-
-
     return (
       <Card className="itemDetailCard">
         <CardImg
@@ -34,7 +30,7 @@ const ItemDetail = ({ item, addProducts, subtractProduct, onAdd, productAdded })
           src={
             (item.imgUrl === "") ? imageNotAvailable : item.imgUrl
           }
-          top 
+          top
         />
         <CardBody>
           <CardTitle tag="h2">{item.title}</CardTitle>

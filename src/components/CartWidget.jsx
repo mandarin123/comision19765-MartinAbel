@@ -1,52 +1,46 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
-import "../App.css";
 import { Button, Form, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
 import { imageNotAvailable } from "./Item";
 import { Link } from "react-router-dom";
 import { getFiresore } from "../service/getFirestone";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { FormGroup } from "@mui/material";
-
+import "../App.css";
 
 const CartWidget = () => {
 
   const { cartList, deleteCart, deleteCartItem, totalPrice } = useContext(CartContext);
-
   const [modal, setModal] = useState(false);
   const toggleModal = () => setModal(!modal);
-
+  const [modalEndShop, setModalEndShop] = useState(false);
+  const toggleModalEndShop = () => setModalEndShop(!modalEndShop);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: ''
   });
   
-  const generateOrder = (e) => {
-    e.preventDefault();
-
+  const generateOrder = () => {
+    //e.preventDefault();
     const order = {};
     order.date = firebase.firestore.Timestamp.fromDate(new Date());
     order.buyer = formData;
     order.total = totalPrice();
-
     order.items = cartList.map(cartItem => {
       const id = cartItem.id;
       const name = cartItem.title;
       const price = cartItem.price * cartItem.counter;
       const totalItem = cartItem.counter;
-
       return {id, name, price, totalItem};
     });
 
     const dbQuery = getFiresore();
-
     dbQuery.collection('orders').add(order)
       .then(resp => console.log(resp))
       .catch(err => console.log(err));
-
-    toggleModal();
-    };
+      toggleModal();
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -203,17 +197,37 @@ const CartWidget = () => {
                 >
                   Finalizar compra
             </Button>
+            
             <Modal isOpen={modal} toggle={toggleModal} className="modals">
-                  <ModalHeader>
-                    Envia tus datos para realizar el pedido
-                  </ModalHeader>
-                  <ModalBody>
-                    <EndBuyingForm />
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="primary" onClick={generateOrder}>Enviar Pedido</Button>
-                  </ModalFooter>
-                </Modal>
+              <ModalHeader>
+                Envia tus datos para realizar el pedido
+              </ModalHeader>
+              <ModalBody>
+                <EndBuyingForm />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={() => {generateOrder() ; toggleModalEndShop() }}>Enviar Pedido</Button>
+              </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalEndShop} toggle={toggleModalEndShop} className="modals">
+              <ModalHeader>
+                Datos de su pedido
+              </ModalHeader>
+              <ModalBody>
+               {/*  {cartList.id}
+                {cartList.name}
+                {cartList.price}
+                {cartList.totalItem} */}
+              </ModalBody>
+              <ModalFooter>
+                Nombre:{formData.name}
+                <br/>
+                Telefono:{formData.phone}
+                <br/>
+                Email: {formData.email}
+              </ModalFooter>
+            </Modal>
           </Table>
       }
     </div>
