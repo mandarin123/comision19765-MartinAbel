@@ -10,19 +10,22 @@ import "../App.css";
 
 const CartWidget = () => {
 
+  
   const { cartList, deleteCart, deleteCartItem, totalPrice } = useContext(CartContext);
   const [modal, setModal] = useState(false);
   const toggleModal = () => setModal(!modal);
   const [modalEndShop, setModalEndShop] = useState(false);
   const toggleModalEndShop = () => setModalEndShop(!modalEndShop);
+  const [orderId, setOrderId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: ''
   });
+
+
   
   const generateOrder = () => {
-    //e.preventDefault();
     const order = {};
     order.date = firebase.firestore.Timestamp.fromDate(new Date());
     order.buyer = formData;
@@ -32,14 +35,17 @@ const CartWidget = () => {
       const name = cartItem.title;
       const price = cartItem.price * cartItem.counter;
       const totalItem = cartItem.counter;
+
       return {id, name, price, totalItem};
     });
 
     const dbQuery = getFiresore();
     dbQuery.collection('orders').add(order)
-      .then(resp => console.log(resp))
+      .then(idOrder => setOrderId(idOrder.id))
       .catch(err => console.log(err));
       toggleModal();
+
+      console.log('idOrden', orderId);
   };
 
   const handleChange = (e) => {
@@ -50,6 +56,7 @@ const CartWidget = () => {
   };
 
   const EndBuyingForm = () => {
+
     return (
       <Form
         onSubmit={generateOrder}
@@ -215,6 +222,7 @@ const CartWidget = () => {
                 Datos de su pedido
               </ModalHeader>
               <ModalBody>
+                {orderId.id}
                {/*  {cartList.id}
                 {cartList.name}
                 {cartList.price}

@@ -41,6 +41,7 @@
     display: inline-block;
     line-height: 50px;
     text-align: center;
+    margin-right: 5px;
 }
 
 .quantityCounter {
