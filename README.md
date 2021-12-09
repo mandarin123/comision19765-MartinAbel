@@ -2,7 +2,9 @@
 
  Pagina web para la comercializacion y de productos de pasteleria
  
- ## Librerias usadas 
+ ## Dependencias
+ 
+ 
  
 | Libreria | Version | Uso |
 | ------ | ------ | ------ |
