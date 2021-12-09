@@ -6,7 +6,7 @@
  
  
  
-| Libreria | Version | Uso |
+| Nombre | Version | Uso |
 | ------ | ------ | ------ |
 | Mui | 5.0.4 | Libreria de la cual importe el icono del CartWidget |
 | Reactstrap | 8.10.0 | Libreria similar a Bootstrap, de donde importe los componentes |
